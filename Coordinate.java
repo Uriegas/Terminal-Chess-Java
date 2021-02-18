@@ -27,4 +27,9 @@ public class Coordinate {
         this.x = other.x;
         this.y = other.y;
     }
+
+    public void add(Coordinate other){
+        this.x = other.getX();
+        this.y = other.getY();
+    }
 }
