@@ -12,9 +12,9 @@ public class Pawn extends Piece{
     }
 
     private void initPossibleMoves(){
-        if(super.getColor() == "WHITE"){
+        if(super.getColor() == Color.WHITE){
             this.mvm.add(new Coordinate(0, 1));
-        }else if(super.getColor() == "BLACK"){
+        }else if(super.getColor() == Color.BLACK){
             this.mvm.add(new Coordinate(0, -1));
         }
     }
