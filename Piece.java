@@ -7,9 +7,10 @@ public abstract class Piece extends Coordinate{
     private Color color;
     private Alive alive;
 
-    public Piece(Color color){
+    public Piece(Color color, Coordinate position){
         this.color = color;
         this.alive = Alive.LIVE;
+        this.position = position;
     }
 
     public void setPosition(Coordinate other){

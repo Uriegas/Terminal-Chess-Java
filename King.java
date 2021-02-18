@@ -1,5 +1,6 @@
 import java.util.*;
 
+
 public class King extends Piece{
 //    private Coordinate[] possibleMoves = new Coordinate[4];
 
@@ -15,8 +16,13 @@ public class King extends Piece{
         this.mvm.add(new Coordinate(-1, -1));
     }
 
-    public King(Color color){
-        super(color);
+    public King(Color color, Coordinate position){
+        super(color, position);
         this.initPossibleMoves();
+    }
+
+    public King(){
+        //King starts at position 0,3
+        super(Color.WHITE, new Coordinate(0,3));
     }
 }
