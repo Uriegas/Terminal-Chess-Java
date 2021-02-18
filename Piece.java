@@ -2,7 +2,7 @@
 enum Color{WHITE, BLACK};
 enum Alive{LIVE, DEAD};
 
-public abstract class Piece {
+public abstract class Piece extends Coordinate{
     private Coordinate position;
     private Color color;
     private Alive alive;
