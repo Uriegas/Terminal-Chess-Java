@@ -29,6 +29,6 @@ public class King extends Piece{
     }
 
     public char toChar(){
-        return figure;
+        return this.figure;
     }
 }

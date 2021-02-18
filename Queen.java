@@ -21,6 +21,6 @@ public class Queen extends Piece{
         this.initPossibleMoves();
     }
     public char toChar(){
-        return figure;
+        return this.figure;
     }
 }

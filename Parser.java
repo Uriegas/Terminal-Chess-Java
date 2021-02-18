@@ -36,3 +36,4 @@ public class Parser extends Coordinate{
         return this.position;
     }
 }
+

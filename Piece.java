@@ -32,6 +32,11 @@ public abstract class Piece extends Coordinate{
         return position;
     }
 
+    //Añado el get color para cuestiones de implementación de color de figuras en posiciones (Creo que se usará)
+    public Color getColor(){
+        return this.getColor();
+    }
+
     public String toString(){
         return  (this.color == Color.WHITE ? "WHITE" : "BLACK") +
                 ' ' + (this.alive == Alive.LIVE ? "LIVE" : "DEAD");
