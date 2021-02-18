@@ -1,4 +1,14 @@
 
+/*Caracteres con figuritas *.*
+DISPLAY_LOOKUP = {
+    "R": '♜',
+    "N": '♞',
+    "B": '♝',
+    "K": '♚',	
+    "Q": '♛',
+    "P": '♟',
+}
+*/
 enum Color{WHITE, BLACK};
 enum Alive{LIVE, DEAD};
 
@@ -23,7 +33,7 @@ public abstract class Piece extends Coordinate{
 
     public String toString(){
         return  (this.color == Color.WHITE ? "WHITE" : "BLACK") +
-                (this.alive == Alive.LIVE ? "LIVE" : "DEAD");
+                ' ' + (this.alive == Alive.LIVE ? "LIVE" : "DEAD");
     }
 
 }
