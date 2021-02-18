@@ -5,6 +5,7 @@ public class King extends Piece{
 //    private Coordinate[] possibleMoves = new Coordinate[4];
     private char figure = '♚';
 
+    //Possible movements around the piece
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
     private void initPossibleMoves(){
         this.mvm.add(new Coordinate(0, 1));
