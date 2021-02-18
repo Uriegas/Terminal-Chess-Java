@@ -28,6 +28,11 @@ public class Coordinate {
         this.y = other.y;
     }
 
+    public void setPosition(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
     public void add(Coordinate other){
         this.x = other.getX();
         this.y = other.getY();

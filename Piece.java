@@ -7,6 +7,7 @@ DISPLAY_LOOKUP = {
     "K": '♚',	
     "Q": '♛',
     "P": '♟',
+    "p": '▲',
 }
 */
 enum Color{WHITE, BLACK};
