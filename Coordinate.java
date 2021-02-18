@@ -10,7 +10,7 @@ public class Coordinate {
         return this.y;
     }
 
-    public void changePosition(Coordinate other){
+    public void setPosition(Coordinate other){
         this.x = other.x;
         this.y = other.y;
     }
