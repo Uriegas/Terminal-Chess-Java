@@ -23,4 +23,11 @@ public class Queen extends Piece{
     public char toChar(){
         return this.figure;
     }
+    
+    //Prueba Viernes
+    public Queen(){
+        super(Color.WHITE, new Coordinate(0,3));
+    }
+    //
+
 }

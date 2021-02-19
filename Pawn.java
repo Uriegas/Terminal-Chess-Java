@@ -22,4 +22,10 @@ public class Pawn extends Piece{
     public char toChar(){
         return this.figure;
     }
+    
+    //Prueba Viernes
+    public Pawn(){
+        super(Color.WHITE, new Coordinate(0,3));
+    }
+    //
 }
