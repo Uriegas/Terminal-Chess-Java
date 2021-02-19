@@ -27,7 +27,7 @@ public class Parser extends Coordinate{
 
     private void formatString(){
         //Remove white-spaces. Ex. 3 f - > 1 f == 3f->1f
-        s.replaceAll(" ", "");
+        this.s = this.s.replaceAll("\\s", "");
     }
 
     //Separate into strings of tokens 
@@ -43,26 +43,26 @@ public class Parser extends Coordinate{
     //Exception handling not implemented yet
     private Coordinate ParseCoordinate(String s){
             switch(s.charAt(0)){
-                case '1': x = 0;
-                case '2': x = 1;
-                case '3': x = 2;
-                case '4': x = 3;
-                case '5': x = 4;
-                case '6': x = 5;
-                case '7': x = 6;
-                case '8': x = 7;
-                default: x = -1;
+                case '1': x = 0; break;
+                case '2': x = 1; break;
+                case '3': x = 2; break;
+                case '4': x = 3; break;
+                case '5': x = 4; break;
+                case '6': x = 5; break;
+                case '7': x = 6; break;
+                case '8': x = 7; break;
+                default: x = -1; break;
             }
             switch(s.charAt(1)){
-                case 'a': y = 0;
-                case 'b': y = 1;
-                case 'c': y = 2;
-                case 'd': y = 3;
-                case 'e': y = 4;
-                case 'f': y = 5;
-                case 'g': y = 6;
-                case 'h': y = 7;
-                default: y = -1;
+                case 'a': y = 0; break;
+                case 'b': y = 1; break;
+                case 'c': y = 2; break;
+                case 'd': y = 3; break;
+                case 'e': y = 4; break;
+                case 'f': y = 5; break;
+                case 'g': y = 6; break;
+                case 'h': y = 7; break;
+                default: y = -1; break;
             }
         return new Coordinate(x, y);
     }
@@ -73,6 +73,9 @@ public class Parser extends Coordinate{
 
         this.formatString();
         this.Tokenizer(this.s);
+        System.out.println(ss[0]);
+        System.out.println(ss[1]);
+        System.out.println(ss[2]);
         //Parse first coordinate
         this.origin = this.ParseCoordinate(this.ss[0]);
 
