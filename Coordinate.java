@@ -34,7 +34,7 @@ public class Coordinate {
     }
 
     public void add(Coordinate other){
-        this.x = other.getX();
-        this.y = other.getY();
+        this.x += other.getX();
+        this.y += other.getY();
     }
 }
