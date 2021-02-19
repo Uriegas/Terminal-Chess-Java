@@ -73,9 +73,6 @@ public class Parser extends Coordinate{
 
         this.formatString();
         this.Tokenizer(this.s);
-        System.out.println(ss[0]);
-        System.out.println(ss[1]);
-        System.out.println(ss[2]);
         //Parse first coordinate
         this.origin = this.ParseCoordinate(this.ss[0]);
 
