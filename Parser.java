@@ -5,6 +5,8 @@
 //r to make a random move
 //u to undo your last move
 //? to see options
+//Doesn't check if origin coordinate is empty
+//No default in switch cases implemented
 
 public class Parser extends Coordinate{
     //String to analyze
