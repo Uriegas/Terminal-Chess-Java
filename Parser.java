@@ -51,6 +51,7 @@ public class Parser extends Coordinate{
                 case '6': x = 5;
                 case '7': x = 6;
                 case '8': x = 7;
+                default: x = -1;
             }
             switch(s.charAt(1)){
                 case 'a': y = 0;
@@ -61,6 +62,7 @@ public class Parser extends Coordinate{
                 case 'f': y = 5;
                 case 'g': y = 6;
                 case 'h': y = 7;
+                default: y = -1;
             }
         return new Coordinate(x, y);
     }
@@ -81,6 +83,14 @@ public class Parser extends Coordinate{
         //Parse second coordinate
         this.destination = this.ParseCoordinate(this.ss[2]);
 
+        return this.destination;
+    }
+
+    public Coordinate getOrigin(){
+        return this.origin;
+    }
+
+    public Coordinate getDestination(){
         return this.destination;
     }
 }
