@@ -37,4 +37,8 @@ public class Coordinate {
         this.x += other.getX();
         this.y += other.getY();
     }
+
+    public String toString(){
+        return "(" + this.getX() + ", " + this.getY() + ")";
+    }
 }
