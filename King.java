@@ -23,18 +23,25 @@ public class King extends Piece{
         this.initPossibleMoves();
     }
 
-    public King(){
+    public King(Color color){
         //King starts at position 0,3
-        //This should be done in board not here
-        super('♚', "king", Color.WHITE, new Coordinate(0,3));
+        //Solo ocupamos saber de que color es la pieza
+        super('♚', "king", color, new Coordinate(0,4));
+        //Si la pieza es negra cambiar la posicion inicial
+        if(color == Color.BLACK)
+            this.setPosition(new Coordinate(7, 4));
+    }
+
+    public King(){
+        this(Color.WHITE);
     }
 
     /*
     public char getFigure(){
         return this.figure;
     }
-*/
     public String toString(){
         return "Pieza:" + this.getFigure() + '\n' + super.toString();
     }
+*/
 }

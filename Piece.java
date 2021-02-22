@@ -59,9 +59,11 @@ public abstract class Piece extends Coordinate{
     //Imprime información de la pieza
     //Ya se que se ve horrible
     public String toString(){
-        return  "Color: " + (this.color == Color.WHITE ? "WHITE" : "BLACK") + '\n' +
+        return  "Name: " + this.getPiece_Type() + '\n' + 
+                "Figure: " + String.valueOf(this.getFigure()) + '\n' + 
+                "Color: " + (this.color == Color.WHITE ? "WHITE" : "BLACK") + '\n' +
                 "Live: " + (this.alive == Alive.LIVE ? "LIVE" : "DEAD") + '\n' +
-                "Position: " + (this.position.toString()) + '\n';
+                "Position: " + this.position.toString() + '\n';
     }
 
 }
