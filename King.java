@@ -25,6 +25,7 @@ public class King extends Piece{
 
     public King(){
         //King starts at position 0,3
+        //This should be done in board not here
         super(Color.WHITE, new Coordinate(0,3));
     }
 
