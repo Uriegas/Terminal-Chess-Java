@@ -12,12 +12,13 @@ public class TestKing {
 
         //Integrando Parser para mover coordenadas
         while(true){
-            System.out.println("> ");
+            System.out.print("> ");
             s = in.nextLine();
 
             //Pasa de string a coordenada y cambia la coordenada del rey
             myking.setPosition( userInput.Parse(s) );
-            System.out.println(myking.getPosition().toString());
+            System.out.println("Pieza en: " + myking.getPosition().toString());
+            System.out.println("Pieza en: " + myking.getPosition().toChessNotation());
         }
     }
 }
