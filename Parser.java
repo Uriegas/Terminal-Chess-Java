@@ -75,13 +75,22 @@ public class Parser extends Coordinate{
         this.Tokenizer(this.s);
         //Parse first coordinate
         this.origin = this.ParseCoordinate(this.ss[0]);
+        /*
+        if(pieceInCoordinate()){//Checar si la primer coordenada si tiene una pieza
+            //Como si tiene seguimos con el codigus
+            continue;
+        }
+        else
+            //Return algo invalido
+        */
 
         //We ignore the arrow aka ->
         //If implemented it should be something like:
-        //this.checkArrow();
+        //this.checkArrowNotation();
 
         //Parse second coordinate
         this.destination = this.ParseCoordinate(this.ss[2]);
+        //Checar si esa casilla es un movimiento valido para la pieza en el origen
 
         return this.destination;
     }
