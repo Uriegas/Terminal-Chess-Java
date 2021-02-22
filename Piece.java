@@ -37,9 +37,12 @@ public abstract class Piece extends Coordinate{
         return this.getColor();
     }
 
+    //Imprime información de la pieza
+    //Ya se que se ve horrible
     public String toString(){
-        return  (this.color == Color.WHITE ? "WHITE" : "BLACK") +
-                ' ' + (this.alive == Alive.LIVE ? "LIVE" : "DEAD");
+        return  "Color: " + (this.color == Color.WHITE ? "WHITE" : "BLACK") + '\n' +
+                "Live: " + (this.alive == Alive.LIVE ? "LIVE" : "DEAD") + '\n' +
+                "Position: " + (this.position.toString()) + '\n';
     }
 
 }

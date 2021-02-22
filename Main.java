@@ -8,8 +8,8 @@ public class Main {
 		Queen queen = new Queen();
 
 		//Agrega los Reyes
-		board.setPiece(String.valueOf(king.toChar()), 0, 4);
-		board.setPiece(String.valueOf(king.toChar()), 7, 4);
+		board.setPiece(String.valueOf(king.getFigure()), 0, 4);
+		board.setPiece(String.valueOf(king.getFigure()), 7, 4);
 
 		//Agrega las Reinas
 		board.setPiece(String.valueOf(queen.toChar()), 0, 3);

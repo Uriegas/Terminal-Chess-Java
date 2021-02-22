@@ -29,7 +29,11 @@ public class King extends Piece{
         super(Color.WHITE, new Coordinate(0,3));
     }
 
-    public char toChar(){
+    public char getFigure(){
         return this.figure;
+    }
+
+    public String toString(){
+        return "Pieza:" + this.getFigure() + '\n' + super.toString();
     }
 }
