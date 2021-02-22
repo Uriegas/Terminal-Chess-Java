@@ -3,7 +3,7 @@ import java.util.*;
 
 public class King extends Piece{
 //    private Coordinate[] possibleMoves = new Coordinate[4];
-    private char figure = '♚';
+//    private char figure = '♚';
 
     //Possible movements around the piece
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
@@ -26,13 +26,14 @@ public class King extends Piece{
     public King(){
         //King starts at position 0,3
         //This should be done in board not here
-        super(Color.WHITE, new Coordinate(0,3));
+        super('♚', "king", Color.WHITE, new Coordinate(0,3));
     }
 
+    /*
     public char getFigure(){
         return this.figure;
     }
-
+*/
     public String toString(){
         return "Pieza:" + this.getFigure() + '\n' + super.toString();
     }
