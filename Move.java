@@ -1,4 +1,7 @@
+//Ya entendi esta clase chicas
+//Es el movimiento del jugador
+//Hay 2 coordenadas: origen y destino
+//Checa la validez del movimiento (creo)
 public class Move {
-    //Esta clase checa los posbiles movimientos
-    //Si hay jaque mate, mate, casillas obstruidas, pieza para comer, etc.
+
 }
