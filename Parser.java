@@ -16,6 +16,8 @@ public class Parser extends Coordinate{
     private int x, y;
     private Coordinate origin, destination;
 
+    private boolean quitFlag;
+
     public Parser(){
         //Initialize variables, except s
         this.ss = new String[3];
@@ -23,6 +25,19 @@ public class Parser extends Coordinate{
         this.y = 0;
         this.origin = new Coordinate();
         this.destination = new Coordinate();
+        this.quitFlag = false;
+    }
+
+    public Coordinate getOrigin(){
+        return this.origin;
+    }
+
+    public Coordinate getDestination(){
+        return this.destination;
+    }
+
+    public boolean getQuitFlag(){
+        return this.quitFlag;
     }
 
     private void formatString(){
@@ -36,6 +51,30 @@ public class Parser extends Coordinate{
         this.ss[0] = s.substring(0, 2);
         this.ss[1] = s.substring(2, 4);
         this.ss[2] = s.substring(4, 6);
+    }
+
+    private void SeeLegalMoves(){
+        System.out.println("Legal Moves:");
+    }
+
+    private void randomMove(){
+        //Generar una coordenada aleatoria de un movimiento valido.
+        //Esta función modificaria las coordenadas: origin y destination
+    }
+
+    private void undoMove(){
+        //El vato aqui usa algo como history.pop()
+        //O sea que lleva un registro de los movimientos
+        //Y nada mas quita el ultimo
+        //Seria implementar un "stack" con el historial de movimientos
+        //A lo mejor esto ni siquiera va aqui, quizá en el tablero
+    }
+    private void seeOptions(){//Imprime menu de opciones
+        //Quiza esto deberia de ser un string para no imprimir dentro de la clase
+        System.out.println("u : undo last move");
+        System.out.println("l : show all legal moves");
+        System.out.println("r : make a random move");
+        System.out.println("quit : resign");
     }
 
     //Parse from str 2 crd Ex. 3f == (2,7)
@@ -71,35 +110,39 @@ public class Parser extends Coordinate{
         //Save string into class
         this.s = s;
 
-        this.formatString();
-        this.Tokenizer(this.s);
-        //Parse first coordinate
-        this.origin = this.ParseCoordinate(this.ss[0]);
-        /*
-        if(pieceInCoordinate()){//Checar si la primer coordenada si tiene una pieza
-            //Como si tiene seguimos con el codigus
-            continue;
+        this.formatString();//Replace white spaces
+
+        if(s == "l")
+            SeeLegalMoves();//See every legal move
+        else if(s == "r")
+            randomMove();//random move
+        else if(s == "u")
+            undoMove();//Undo move
+        else if(s == "?")
+            seeOptions();//See options
+        else if(s == "quit")
+            this.quitFlag = true;//Send a quit signal or something like that
+        else{
+            this.Tokenizer(this.s);
+            //Parse first coordinate
+            this.origin = this.ParseCoordinate(this.ss[0]);
+            /*
+            if(pieceInCoordinate()){//Checar si la primer coordenada si tiene una pieza
+                //Como si tiene seguimos con el codigus
+                continue;
+            }
+            else
+                //Return algo invalido
+            */
+
+            //We ignore the arrow aka ->
+            //If implemented it should be something like:
+            //this.checkArrowNotation();
+
+            //Parse second coordinate
+            this.destination = this.ParseCoordinate(this.ss[2]);
+            //Checar si esa casilla es un movimiento valido para la pieza en el origen
         }
-        else
-            //Return algo invalido
-        */
-
-        //We ignore the arrow aka ->
-        //If implemented it should be something like:
-        //this.checkArrowNotation();
-
-        //Parse second coordinate
-        this.destination = this.ParseCoordinate(this.ss[2]);
-        //Checar si esa casilla es un movimiento valido para la pieza en el origen
-
-        return this.destination;
-    }
-
-    public Coordinate getOrigin(){
-        return this.origin;
-    }
-
-    public Coordinate getDestination(){
         return this.destination;
     }
 }

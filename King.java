@@ -37,6 +37,12 @@ public class King extends Piece{
     }
 
     /*
+    //Check if the destination Coordinate aka Movement is valid,
+    //if so which one.
+    public boolean isValid(Coordinate destination){
+        //Coordinate possibleMoves[];
+    }
+
     public char getFigure(){
         return this.figure;
     }
