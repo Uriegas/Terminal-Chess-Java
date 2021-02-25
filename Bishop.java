@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Bishop extends Piece{
-    private char figure = '♝';
+    //private char figure = '♝';
 
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
     
@@ -14,11 +14,11 @@ public class Bishop extends Piece{
     }
 
     public Bishop(Color color, Coordinate position){
-        super(color, position);
+        super('♝', "Bishop", color, position);
         this.initPossibleMoves();
     }
-    public char toChar(){
-        return this.figure;
+    public char getFigure(){
+        return super.getFigure();
     }
     
     //Prueba Viernes  ¿? XD, le puse donde debería estar 1 vdd

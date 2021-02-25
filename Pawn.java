@@ -2,12 +2,12 @@
 import java.util.*;
 
 public class Pawn extends Piece{
-    private char figure = '♟';
+    //private char figure = '♟';
 
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
 
     public Pawn(Color color, Coordinate position){
-        super(color, position);
+        super('♞', "Knight", color, position);
         this.initPossibleMoves();
     }
 
@@ -19,8 +19,8 @@ public class Pawn extends Piece{
         }
     }
 
-    public char toChar(){
-        return this.figure;
+    public char getFigure(){
+        return super.getFigure();
     }
     
     //Prueba Viernes

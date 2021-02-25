@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Rook extends Piece{
-    private char figure = '♜';
+    //private char figure = '♜';
 
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
     
@@ -14,11 +14,11 @@ public class Rook extends Piece{
     }
 
     public Rook(Color color, Coordinate position){
-        super(color, position);
+        super('♜', "Knight", color, position);
         this.initPossibleMoves();
     }
-    public char toChar(){
-        return this.figure;
+    public char getFigure(){
+        return super.getFigure();
     }
     
     //Prueba Viernes  ¿? XD, le puse donde debería estar 1 vdd

@@ -45,7 +45,11 @@ public abstract class Piece extends Coordinate{
 
     //Añado el get color para cuestiones de implementación de color de figuras en posiciones (Creo que se usará)
     public Color getColor(){
-        return this.getColor();
+        return this.color;
+    }
+
+    public Alive isAlive(){
+        return this.alive;
     }
 
     public char getFigure(){
@@ -65,5 +69,4 @@ public abstract class Piece extends Coordinate{
                 "Live: " + (this.alive == Alive.LIVE ? "LIVE" : "DEAD") + '\n' +
                 "Position: " + this.position.toString() + '\n';
     }
-
 }

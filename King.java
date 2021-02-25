@@ -2,8 +2,7 @@ import java.util.*;
 
 
 public class King extends Piece{
-//    private Coordinate[] possibleMoves = new Coordinate[4];
-//    private char figure = '♚';
+    //private char figure = '♚';
 
     //Possible movements around the piece
     //El bato les llama direcciones, hay lo vez Isaac
@@ -20,25 +19,23 @@ public class King extends Piece{
     }
 
     public King(Color color, Coordinate position){
-        super(color, position);
+        super('♝', "King", color, position);
         this.initPossibleMoves();
     }
 
-    //Esto no se ocupa en realidad
-    public King(Color color){
-        //King starts at position 0,3
-        //Solo ocupamos saber de que color es la pieza
-        super('♚', "king", color, new Coordinate(0,4));
-        //Si la pieza es negra cambiar la posicion inicial
-        if(color == Color.BLACK)
-            this.setPosition(new Coordinate(7, 4));
+    public King(){
+        this(Color.WHITE, new Coordinate(0,4));
     }
 
-    public King(){
-        this(Color.WHITE);
+    public char getFigure(){
+        return super.getFigure();
     }
+
     //
 
+    //----------------------
+    //Trash Code
+    //----------------------
     /*
     //Check if the destination Coordinate aka Movement is valid,
     //if so which one.
@@ -53,4 +50,16 @@ public class King extends Piece{
         return "Pieza:" + this.getFigure() + '\n' + super.toString();
     }
 */
+    //Esto no se ocupa en realidad
+    /*
+    public King(Color color){
+        //King starts at position 0,3
+        //Solo ocupamos saber de que color es la pieza
+        super('♚', "king", color, new Coordinate(0,4));
+        //Si la pieza es negra cambiar la posicion inicial
+        if(color == Color.BLACK)
+            this.setPosition(new Coordinate(7, 4));
+    }
+    */
+
 }
