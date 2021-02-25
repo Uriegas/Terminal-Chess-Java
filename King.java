@@ -31,6 +31,9 @@ public class King extends Piece{
         return super.getFigure();
     }
 
+    public void setFigureToFigure(){
+        super.setFigure('♚');
+    }
     //
 
     //----------------------

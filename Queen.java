@@ -17,11 +17,14 @@ public class Queen extends Piece{
     }
 
     public Queen(Color color, Coordinate position){
-        super('♛', "Knight", color, position);
+        super('♛', "Queen", color, position);
         this.initPossibleMoves();
     }
     public char getFigure(){
         return super.getFigure();
+    }
+    public void setFigureToFigure(){
+        super.setFigure('♛');
     }
     
     //Prueba Viernes

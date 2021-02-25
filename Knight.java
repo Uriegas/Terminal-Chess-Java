@@ -19,11 +19,14 @@ public class Knight extends Piece{
     }
 
     public Knight(Color color, Coordinate position){
-        super('♞', "Knight", color, position);
+        super('♞', "Night", color, position);
         this.initPossibleMoves();
     }
     public char getFigure(){
         return super.getFigure();
+    }
+    public void setFigureToFigure(){
+        super.setFigure('♚');
     }
     
     //Prueba Viernes  ¿? XD, le puse donde debería estar 1 vdd

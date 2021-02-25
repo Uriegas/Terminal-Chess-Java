@@ -52,6 +52,14 @@ public abstract class Piece extends Coordinate{
         return this.alive;
     }
 
+    public void setFigure(char f){
+        this.figure = f;
+    }
+
+    public void setFigureToLetter(){
+        this.figure = piece_type.charAt(0);
+    }
+
     public char getFigure(){
         return this.figure;
     }
@@ -69,4 +77,5 @@ public abstract class Piece extends Coordinate{
                 "Live: " + (this.alive == Alive.LIVE ? "LIVE" : "DEAD") + '\n' +
                 "Position: " + this.position.toString() + '\n';
     }
+    public void setFigureToFigure(){}
 }

@@ -7,7 +7,7 @@ public class Pawn extends Piece{
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
 
     public Pawn(Color color, Coordinate position){
-        super('♟', "Pawn", color, position);
+        super('♟', "▲pawn", color, position);
         this.initPossibleMoves();
     }
 
@@ -21,6 +21,9 @@ public class Pawn extends Piece{
 
     public char getFigure(){
         return super.getFigure();
+    }
+    public void setFigureToFigure(){
+        super.setFigure('♟');
     }
     
     //Prueba Viernes

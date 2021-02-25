@@ -20,6 +20,10 @@ public class Bishop extends Piece{
     public char getFigure(){
         return super.getFigure();
     }
+
+    public void setFigureToFigure(){
+        super.setFigure('♝');
+    }
     
     //Prueba Viernes  ¿? XD, le puse donde debería estar 1 vdd
     public Bishop(){
