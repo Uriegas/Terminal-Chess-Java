@@ -21,7 +21,7 @@ public class Board
 		//Inicializar piezas, PD. se ve horribe pero jala
 		//Inicializar peones
 		for(int i = 0; i < 8; i++)//Miren la i de abajito para las coordenadas
-			pieces.add(new Pawn(Color.WHITE, new Coordinate(i,1)));
+			pieces.add(new Pawn(Color.WHITE, new Coordinate(i,1))); //♟
 		//Inicializar resto de las piezas
 		pieces.add(new Rook(Color.WHITE, new Coordinate(0,0)));		//♜
 		pieces.add(new Knight(Color.WHITE, new Coordinate(1,0)));	//♞
@@ -87,6 +87,16 @@ public class Board
 		//Agregar la línea de "a b c d e f g h"
 		this.boardDrawed += "   a b c d e f g h";
 		return this.boardDrawed;
+	}
+
+	public void boardToFigures(){
+		for(int i = 0; i < pieces.size(); i++)
+			pieces.get(i).setFigureToFigure();
+	}
+	public void boardToLetters(){
+		for(int i = 0; i < pieces.size(); i++)
+			pieces.get(i).setFigureToLetter();
+
 	}
 
 }
