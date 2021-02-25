@@ -42,6 +42,14 @@ public class Coordinate {
         return "(" + this.getX() + ", " + this.getY() + ")";
     }
 
+    public boolean equals(Coordinate c){
+        //Si x y y en ambas coordenadas son iguales entonces retornar true
+        if(this.getX() == c.getX() && this.getY() == c.getY())
+            return true;
+        else
+            return false;
+    }
+
     //Returns in position in chess notation
     public String toChessNotation(){
         String s = "";
