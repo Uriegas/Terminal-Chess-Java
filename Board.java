@@ -57,13 +57,15 @@ public class Board
 	public String drawBoard(){
 		this.boardDrawed = "";
 		int sizeOfBoard = 0;
+		Coordinate currentPosition;
 		//La neta no tengo idea de como pasar esto a un string
 		for(int y=0; y<8; y++){
 			for(int x=0; x<8; x++){//Recorrer filas
-				//Antes de iterar sobre cada pieza, guarda el tamaño del boardDrawed
+				//Antes de iterar sobre cada pieza, guarda el tamaño del boardDrawed y crea una coordenada
 				sizeOfBoard = this.boardDrawed.length();
+				currentPosition = new Coordinate(x, y);
 				for( int i=0; i<pieces.size(); i++){//Iterar sobre todas las piezas
-					if(pieces.get(i).getPosition() == new Coordinate(x,y)){//Si la pieza esta en la coordenada iterable, entonces agregala al string
+					if( currentPosition.equals( pieces.get(i).getPosition() ) ){//Si la pieza esta en la coordenada iterable, entonces agregala al string
 						this.boardDrawed += pieces.get(i).getFigure();
 					}
 				}
