@@ -19,7 +19,7 @@ public class King extends Piece{
     }
 
     public King(Color color, Coordinate position){
-        super('♝', "King", color, position);
+        super('♚', "King", color, position);
         this.initPossibleMoves();
     }
 
