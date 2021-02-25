@@ -33,7 +33,7 @@ public class Knight extends Piece{
     //
 
     //Esto se haría implementando lo de isaac
-    @Override
+    //@Override
     public String getName(){
         return "Knight";
     }

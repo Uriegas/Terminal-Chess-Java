@@ -6,6 +6,7 @@ public class King extends Piece{
 //    private char figure = '♚';
 
     //Possible movements around the piece
+    //El bato les llama direcciones, hay lo vez Isaac
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
     private void initPossibleMoves(){
         this.mvm.add(new Coordinate(0, 1));
@@ -23,6 +24,7 @@ public class King extends Piece{
         this.initPossibleMoves();
     }
 
+    //Esto no se ocupa en realidad
     public King(Color color){
         //King starts at position 0,3
         //Solo ocupamos saber de que color es la pieza
@@ -35,6 +37,7 @@ public class King extends Piece{
     public King(){
         this(Color.WHITE);
     }
+    //
 
     /*
     //Check if the destination Coordinate aka Movement is valid,
