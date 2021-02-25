@@ -55,10 +55,25 @@ public class Board
 	}
 
 	public String drawBoard(){
-		for(int i=0; i<pieces.size(); i++){//Iterar sobre todas las piezas
-			if(pieces.get(i).getColor() == Color.WHITE){//Si las piezas son blancas dibujalas
-				//La neta no tengo idea de como pasar esto a un string
+		boardDrawed = "";
+		int sizeOfBoard = 0;
+		//La neta no tengo idea de como pasar esto a un string
+		for(int y=0; y<8; y++){
+			for(int x=0; x<8; x++){//Recorrer filas
+				//Antes de iterar sobre cada pieza, guarda el tamaño del boardDrawed
+				sizeOfBoard = boardDrawed.length();
+				for( int i=0; i<pieces.size(); i++){//Iterar sobre todas las piezas
+					if(pieces.get(i).getPosition() == new Coordinate(x,y)){//Si la pieza esta en la coordenada iterable, entonces agregala al string
+						boardDrawed += pieces.get(i).getFigure();
+					}
+				}
+				//Verificar si en realidad se agrego algo a la casilla x,y
+				if(sizeOfBoard == boardDrawed.length()){//No se agregó nada, entonces dibuja un puntillo
+					boardDrawed += '·';
+				}
 			}
+			//Se acabo de recorrer una fila, entonces agrega un salto de linea
+			boardDrawed += '\n';
 		}
 		return boardDrawed;
 	}
