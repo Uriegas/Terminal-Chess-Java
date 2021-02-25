@@ -6,7 +6,7 @@ public class Board
 	private int columnas;//8
 	private String[][] board;//El tablero chicas, no se que haga Isaac
 
-	private Stack movementHistory; //El historial chicas
+	//private Stack<Movimiento> movementHistory; //El historial chicas
 	private ArrayList<Piece> pieces; //Array de piezas
 	private String boardDrawed;//El tablero dibujado
 
