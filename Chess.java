@@ -13,6 +13,7 @@ public class Chess {
 
         System.out.println(board.drawBoard());
         System.out.print("Whites move. Type '?' to see options. >");
+        in.nextLine();
 
         in.close();
     }

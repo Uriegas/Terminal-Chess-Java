@@ -10,11 +10,17 @@ public class Board
 	private ArrayList<Piece> pieces; //Array de piezas
 	private String boardDrawed;//El tablero dibujado
 
+	//------------------
+	//Flags
+	//------------------
+	private boolean isCheckMate;
+
 	public Board(int filas, int columnas)
 	{
 		this.board = new String [filas][columnas];
 		this.filas = filas;
 		this.columnas = columnas;
+		this.isCheckMate = false;
 
 		pieces = new ArrayList<Piece>();
 
@@ -99,4 +105,15 @@ public class Board
 
 	}
 
+	public boolean isCheckMate(){
+		//Implementar una funcion que cheque si el rey tiene posibles movimiento
+		//Una idea es que si se regresa una lista vacia de coordenadas, entonces no tiene posibles movimientos
+		/*
+		if(this.isThereLegalMoves("King") == false)
+			this.isCheckMate = false;
+		else
+			this.isCheckMate = true;
+			*/
+		return this.isCheckMate;
+	}
 }
