@@ -77,19 +77,20 @@ public class Parser extends Coordinate{
         System.out.println("quit : resign");
     }
 
-    //Parse from str 2 crd Ex. 3f == (2,7)
+    //Parse from str 2 crd Ex. 3f == (2,7). RECUERDEN QUE EL ORIGEN EN VISTA DE IMPRESION SERA
+    // LA 8a, pero en el codigo 8a sera (0,0)
     //Recives a string of 2 chars
     //Exception handling not implemented yet
     private Coordinate ParseCoordinate(String s){
             switch(s.charAt(0)){
-                case '1': x = 0; break;
-                case '2': x = 1; break;
-                case '3': x = 2; break;
-                case '4': x = 3; break;
-                case '5': x = 4; break;
-                case '6': x = 5; break;
-                case '7': x = 6; break;
-                case '8': x = 7; break;
+                case '1': x = 7; break;
+                case '2': x = 6; break;
+                case '3': x = 5; break;
+                case '4': x = 4; break;
+                case '5': x = 3; break;
+                case '6': x = 2; break;
+                case '7': x = 1; break;
+                case '8': x = 0; break;
                 default: x = -1; break;
             }
             switch(s.charAt(1)){
