@@ -110,9 +110,9 @@ public class Board
 		//Una idea es que si se regresa una lista vacia de coordenadas, entonces no tiene posibles movimientos
 		/*
 		if(this.isThereLegalMoves("King") == false)
-			this.isCheckMate = false;
+			this.isCheckMate = true;//Es hackemate
 		else
-			this.isCheckMate = true;
+			this.isCheckMate = false;
 			*/
 		return this.isCheckMate;
 	}
