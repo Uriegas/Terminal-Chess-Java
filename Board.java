@@ -15,6 +15,7 @@ public class Board
 	//Flags
 	//------------------
 	private boolean isCheckMate;
+	private boolean isStalemate;
 
 	public Board(int filas, int columnas)
 	{
@@ -23,6 +24,7 @@ public class Board
 		this.columnas = columnas;
 		this.isCheckMate = false;
 		this.currentPlayer = Color.WHITE;
+		this.isStalemate = false;
 
 		pieces = new ArrayList<Piece>();
 
@@ -128,6 +130,15 @@ public class Board
 			this.isCheckMate = false;
 			*/
 		return this.isCheckMate;
+	}
+
+	public boolean isStalemate(){
+		//Si el rey no tiene movimientos validos pero no esta siendo atacado
+		/*
+		if(this.isThereLegalMoves("King") == false && this.isThreaten("King"))
+			this.isCheckMate = true;//Es hackemate
+		*/
+		return this.isStalemate;
 	}
 
 	public void makeMovement(String move){
