@@ -134,17 +134,17 @@ public class Parser extends Coordinate{
 
         this.formatString();//Replace white spaces
 
-        if(s == "l" || s == "r" || s == "u" || s == "?" || s == "quit"){
+        if( s.equals("?") || s.equals("l") || s.equals("r") || s.equals("u") || s.equals("quit")){
             this.selectedOption = true;
-            if(s == "l")
+            if(s.equals("l"))
                 SeeLegalMoves();//See every legal move
-            else if(s == "r")
+            else if(s.equals("r"))
                 randomMove();//random move
-            else if(s == "u")
+            else if(s.equals("u"))
                 undoMove();//Undo move
-            else if(s == "?")
+            else if(s.equals("?"))
                 seeOptions();//See options
-            else if(s == "quit")
+            else if(s.equals("quit"))
                 this.quitFlag = true;//Send a quit signal or something like that
         }
         else{//Es una coordenada o una operación invalida
