@@ -10,7 +10,7 @@
 
 //En este codigo hay que tener cuidado con las flags, las uso mucho
 //Pd. Es la unica forma que me se para mandar señales de validez de lo igresado
-public class Parser extends Coordinate{
+public class Parser{
     //String to analyze
     private String s;
     //Substrings from s (Tokens)

@@ -12,7 +12,7 @@ public class Chess {
         System.out.println("A simple chess game from your terminal");
         System.out.println("¡¡Whites move first!!\n");
 
-        while(!board.isCheckMate() && !parser.getQuitFlag() ){//While there is no checkmate and a quit
+        while(!board.isCheckMate() && !parser.getQuitFlag() && !board.isStalemate() ){//While there is no checkmate and a quit
             System.out.println(board.drawBoard() + '\n');
             if(board.getCurrentPlayer() == Color.WHITE)
                 System.out.print("Blues");
@@ -27,7 +27,14 @@ public class Chess {
             System.out.println("Origin is: " + parser.getOrigin().toString() );
             System.out.println("Destination is: " + parser.getDestination().toString() );
         }
-        //Despues del checkmate checar quien ganó
+
+        //Solo existen 3 posibles resultados del juego
+        if(board.isCheckMate())
+            System.out.println(board.getCurrentPlayer().toString() + "won!!");
+        else if(board.isStalemate())//Aqui creo que seria agarrar el otro jugador
+            System.out.println("Draw :(");
+        else
+            System.out.println("Quiting game...");
         in.close();
     }
 }
