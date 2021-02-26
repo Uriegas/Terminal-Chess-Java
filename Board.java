@@ -20,17 +20,28 @@ public class Board
 
 		//Inicializar piezas, PD. se ve horribe pero jala
 		//Inicializar peones
-		for(int i = 0; i < 8; i++)//Miren la i de abajito para las coordenadas
-			pieces.add(new Pawn(Color.WHITE, new Coordinate(i,1))); //♟
+		for(int i = 0; i < 8; i++){//Miren la i de abajito para las coordenadas
+			pieces.add(new Pawn(Color.BLACK, new Coordinate(i,1))); //♟
+			pieces.add(new Pawn(Color.WHITE, new Coordinate(i,6))); //♟ NEGROS
+		}
 		//Inicializar resto de las piezas
-		pieces.add(new Rook(Color.WHITE, new Coordinate(0,0)));		//♜
-		pieces.add(new Knight(Color.WHITE, new Coordinate(1,0)));	//♞
-		pieces.add(new Bishop(Color.WHITE, new Coordinate(2,0)));	//♝
-		pieces.add(new Queen(Color.WHITE, new Coordinate(3,0)));	//♛
-		pieces.add(new King(Color.WHITE, new Coordinate(4,0)));		//♚
-		pieces.add(new Bishop(Color.WHITE, new Coordinate(5,0)));	//♝
-		pieces.add(new Knight(Color.WHITE, new Coordinate(6,0)));	//♞
-		pieces.add(new Rook(Color.WHITE, new Coordinate(7,0)));		//♜
+		pieces.add(new Rook(Color.BLACK, new Coordinate(0,0)));		//♜
+		pieces.add(new Knight(Color.BLACK, new Coordinate(1,0)));	//♞
+		pieces.add(new Bishop(Color.BLACK, new Coordinate(2,0)));	//♝
+		pieces.add(new Queen(Color.BLACK, new Coordinate(3,0)));	//♛
+		pieces.add(new King(Color.BLACK, new Coordinate(4,0)));		//♚
+		pieces.add(new Bishop(Color.BLACK, new Coordinate(5,0)));	//♝
+		pieces.add(new Knight(Color.BLACK, new Coordinate(6,0)));	//♞
+		pieces.add(new Rook(Color.BLACK, new Coordinate(7,0)));		//♜
+
+		pieces.add(new Rook(Color.WHITE, new Coordinate(0,7)));		//♜
+		pieces.add(new Knight(Color.WHITE, new Coordinate(1,7)));	//♞
+		pieces.add(new Bishop(Color.WHITE, new Coordinate(2,7)));	//♝
+		pieces.add(new Queen(Color.WHITE, new Coordinate(3,7)));	//♛
+		pieces.add(new King(Color.WHITE, new Coordinate(4,7)));		//♚
+		pieces.add(new Bishop(Color.WHITE, new Coordinate(5,7)));	//♝
+		pieces.add(new Knight(Color.WHITE, new Coordinate(6,7)));	//♞
+		pieces.add(new Rook(Color.WHITE, new Coordinate(7,7)));		//♜
 		//
 	}
 
@@ -46,7 +57,7 @@ public class Board
 
 	public void setPiece(String piece, int filas, int columnas)
 	{
-		board[filas][columnas] = piece;
+		this.board[filas][columnas] = piece;
 	}
 
 	public String getPosition(int filas, int columnas)
