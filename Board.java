@@ -6,9 +6,10 @@ public class Board
 	private int columnas;//8
 	private String[][] board;//El tablero chicas, no se que haga Isaac
 
-	//private Stack<Movimiento> movementHistory; //El historial chicas
+	private Stack<String> movementHistory; //El historial chicas
 	private ArrayList<Piece> pieces; //Array de piezas
 	private String boardDrawed;//El tablero dibujado
+	private Color currentPlayer; //Cambiarla cada que se agrega un movimiento
 
 	//------------------
 	//Flags
@@ -21,6 +22,7 @@ public class Board
 		this.filas = filas;
 		this.columnas = columnas;
 		this.isCheckMate = false;
+		this.currentPlayer = Color.WHITE;
 
 		pieces = new ArrayList<Piece>();
 
@@ -102,7 +104,7 @@ public class Board
 			this.boardDrawed += '\n';
 		}
 		//Agregar la línea de "a b c d e f g h"
-		this.boardDrawed += "   a b c d e f g h";
+		this.boardDrawed += "\n   a b c d e f g h";
 		return this.boardDrawed;
 	}
 
@@ -126,5 +128,20 @@ public class Board
 			this.isCheckMate = false;
 			*/
 		return this.isCheckMate;
+	}
+
+	public void makeMovement(String move){
+		this.movementHistory.push(move);
+		//Alternar entre jugadores cada que se haga un movimiento
+		this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+	}
+
+	public void undoMovement(String move){
+		this.movementHistory.pop();
+		this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+	}
+
+	public Color getCurrentPlayer(){
+		return this.currentPlayer;
 	}
 }

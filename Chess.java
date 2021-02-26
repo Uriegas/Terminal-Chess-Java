@@ -12,12 +12,22 @@ public class Chess {
         System.out.println("A simple chess game from your terminal");
         System.out.println("¡¡Whites move first!!\n");
 
-        while(!board.isCheckMate()){
-            System.out.println(board.drawBoard());
-            System.out.print("Whites move. Type '?' to see options. >");
+        while(!board.isCheckMate() && !parser.getQuitFlag() ){//While there is no checkmate and a quit
+            System.out.println(board.drawBoard() + '\n');
+            if(board.getCurrentPlayer() == Color.WHITE)
+                System.out.print("Blues");
+            else
+                System.out.print("Reds");
+            System.out.print(" move. (Type '?' to see options.) > ");
+
             input = in.nextLine();
             parser.Parse(input);
+            //Aqui hay que implementar toda la validación del Parser/Movimientos
+            System.out.println("You entered: " + input);
+            System.out.println("Origin is: " + parser.getOrigin().toString() );
+            System.out.println("Destination is: " + parser.getDestination().toString() );
         }
+        //Despues del checkmate checar quien ganó
         in.close();
     }
 }
