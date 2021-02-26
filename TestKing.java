@@ -16,7 +16,8 @@ public class TestKing {
             s = in.nextLine();
 
             //Pasa de string a coordenada y cambia la coordenada del rey
-            myking.setPosition( userInput.Parse(s) );
+            userInput.Parse(s);
+            myking.setPosition(userInput.getDestination());
             System.out.println("Pieza en: " + myking.getPosition().toString());
             System.out.println("Pieza en: " + myking.getPosition().toChessNotation());
         }

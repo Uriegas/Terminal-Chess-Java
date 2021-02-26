@@ -8,6 +8,8 @@
 //Doesn't check if origin coordinate is empty
 //No default in switch cases implemented
 
+//En este codigo hay que tener cuidado con las flags, las uso mucho
+//Pd. Es la unica forma que me se para mandar señales de validez de lo igresado
 public class Parser extends Coordinate{
     //String to analyze
     private String s;
@@ -17,6 +19,8 @@ public class Parser extends Coordinate{
     private Coordinate origin, destination;
 
     private boolean quitFlag;
+    private boolean selectedOption; //Indica si el usuario no ingreso un movimiento, sino un 'comodin'
+    private boolean isInvalidMovement;
 
     public Parser(){
         //Initialize variables, except s
@@ -26,6 +30,8 @@ public class Parser extends Coordinate{
         this.origin = new Coordinate();
         this.destination = new Coordinate();
         this.quitFlag = false;
+        this.selectedOption = true; //Por defecto verdadero, para no andar mandando coordenadas invalidas
+        this.isInvalidMovement = false;
     }
 
     public Coordinate getOrigin(){
@@ -45,6 +51,13 @@ public class Parser extends Coordinate{
         this.s = this.s.replaceAll("\\s", "");
     }
 
+    public boolean getSelectedOption(){
+        return this.selectedOption;
+    }
+
+    public boolean getIsInvalidMovement(){
+        return this.isInvalidMovement;
+    }
     //Separate into strings of tokens 
     //Doesnt return value because it is treated inside the class
     private void Tokenizer(String s){
@@ -77,6 +90,14 @@ public class Parser extends Coordinate{
         System.out.println("quit : resign");
     }
 
+    private boolean isValidMovement(){
+        //Checa si esta el -> en lo que ingresó el usuario, tambien la longitud del string (siempre debe ser la misma)
+        if( s.length() == 6)//Ej. 4f->12 (Todo movimiento tiene 6 caracteres)
+            if( s.charAt(2) == '-' && s.charAt(3) == '>')//Checa el -> en el movimiento
+                return true;
+        return false;
+    }
+
     //Parse from str 2 crd Ex. 3f == (2,7). RECUERDEN QUE EL ORIGEN EN VISTA DE IMPRESION SERA
     // LA 8a, pero en el codigo 8a sera (0,0)
     //Recives a string of 2 chars
@@ -107,26 +128,42 @@ public class Parser extends Coordinate{
         return new Coordinate(x, y);
     }
 
-    public Coordinate Parse(String s){
+    public void Parse(String s){
         //Save string into class
         this.s = s;
 
         this.formatString();//Replace white spaces
 
-        if(s == "l")
-            SeeLegalMoves();//See every legal move
-        else if(s == "r")
-            randomMove();//random move
-        else if(s == "u")
-            undoMove();//Undo move
-        else if(s == "?")
-            seeOptions();//See options
-        else if(s == "quit")
-            this.quitFlag = true;//Send a quit signal or something like that
-        else{
-            this.Tokenizer(this.s);
-            //Parse first coordinate
-            this.origin = this.ParseCoordinate(this.ss[0]);
+        if(s == "l" || s == "r" || s == "u" || s == "?" || s == "quit"){
+            this.selectedOption = true;
+            if(s == "l")
+                SeeLegalMoves();//See every legal move
+            else if(s == "r")
+                randomMove();//random move
+            else if(s == "u")
+                undoMove();//Undo move
+            else if(s == "?")
+                seeOptions();//See options
+            else if(s == "quit")
+                this.quitFlag = true;//Send a quit signal or something like that
+        }
+        else{//Es una coordenada o una operación invalida
+            //Para saber si es coordenada o invalido, usamos la coordenada como flag
+            //Dado que obtenemos una coordenada de tipo (-1, -1) cuando es invalida.
+            //La otra es comprar el movimiento con la lista de posibles movimientos.
+            this.selectedOption = false; //No se seleccionó un 'comodín'
+            if(isValidMovement() == true){
+                isInvalidMovement = false;
+                //Parsea la coordenada, ya checamos que si es valida, pero todavia no checamos si es movimiento valido
+                this.Tokenizer(this.s);
+                this.origin = this.ParseCoordinate(this.ss[0]);
+                this.destination = this.ParseCoordinate(this.ss[2]);
+                //Checar si no se ingreso una casilla invalida
+                //Checar si esa casilla es un movimiento valido para la pieza en el origen
+            }
+            else//Ingreso algo invaldo
+                isInvalidMovement = true;
+
             /*
             if(pieceInCoordinate()){//Checar si la primer coordenada si tiene una pieza
                 //Como si tiene seguimos con el codigus
@@ -135,16 +172,7 @@ public class Parser extends Coordinate{
             else
                 //Return algo invalido
             */
-
-            //We ignore the arrow aka ->
-            //If implemented it should be something like:
-            //this.checkArrowNotation();
-
-            //Parse second coordinate
-            this.destination = this.ParseCoordinate(this.ss[2]);
-            //Checar si esa casilla es un movimiento valido para la pieza en el origen
         }
-        return this.destination;
     }
 }
 

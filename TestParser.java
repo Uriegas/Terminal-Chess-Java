@@ -5,7 +5,7 @@ public class TestParser {
         Scanner in = new Scanner(System.in);
         Parser benito = new Parser();
         String s;
-        while(true){
+        while(!benito.getIsInvalidMovement()){
             System.out.print("> ");
             s = in.nextLine();
             benito.Parse(s);
