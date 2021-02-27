@@ -2,7 +2,6 @@ import java.util.*;
 
 public class Board
 {
-	//private Movimientos movimiento;
 
 	private int filas;//8
 	private int columnas;//8
@@ -12,6 +11,7 @@ public class Board
 	private ArrayList<Piece> pieces; //Array de piezas
 	private String boardDrawed;//El tablero dibujado
 	private Color currentPlayer; //Cambiarla cada que se agrega un movimiento
+	private Movimientos moves;
 
 	//------------------
 	//Flags
@@ -152,6 +152,13 @@ public class Board
 			//Alternar entre jugadores cada que se haga un movimiento
 			this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 
+			//Obtener los posibles Movimientos de la Pieza en cuestion
+			ArrayList<Move> possibleMoves = new ArrayList<>( moves.obtenerMovimientos(move.getPieceToMove(), this) );
+
+			//Validar que sea un movimiento valido
+			for(Move m : possibleMoves )
+			if( move.isEqual(m) )
+			
 			//Buscar la pieza que hace el movimiento y moverla
 			for(Piece pieza : pieces){
 				if( move.getPieceToMove().isEqual(pieza) )

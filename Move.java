@@ -87,4 +87,12 @@ public class Move {
     public Coordinate getNewPos(){
         return this.newPos;
     }
+
+    public boolean isEqual(Move m){
+        //Solo si la pieza es la misma y las coordenadas de destino
+        if( this.piece.isEqual(m.piece) && this.newPos.equals(m.newPos) )
+            return true;
+        else
+            return false;
+    }
 }

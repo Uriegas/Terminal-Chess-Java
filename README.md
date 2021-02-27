@@ -23,6 +23,16 @@ void undoMovement()
 Despues implementar todo ello en clase Chess.  
 E ir añadiendo las validaciones en Movimientos para la clase Move.
 
+Cambiar el nombre de la función
+```java 
+public boolean equals(Coordinate c)
+```
+en [Coordinate.java](Coordinate.java), ya que asi también se llama la función para comparar objetos (localización en memoria del objeto)
+
+```java 
+public boolean equals(Obj o)
+```
+
 ## Chess Concepts  
 **Checkmate** is a game position in which a player's king is in check (threatened with capture) and there is no way to avoid the threat.  
 

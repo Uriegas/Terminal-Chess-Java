@@ -42,6 +42,7 @@ public class Coordinate {
         return "(" + this.getX() + ", " + this.getY() + ")";
     }
 
+    //This function overrides public boolean equals(Obj c)
     public boolean equals(Coordinate c){
         //Si x y y en ambas coordenadas son iguales entonces retornar true
         if(this.getX() == c.getX() && this.getY() == c.getY())
