@@ -7,7 +7,7 @@ public class TestParser {
         Board b = new Board(8,8);
         Move m = null;
         String s;
-        while(!benito.getIsInvalidMovement()){
+        while(true){
             System.out.println( b.drawBoard() );
             System.out.print("> ");
             s = in.nextLine();
@@ -22,8 +22,6 @@ public class TestParser {
                 b.makeMovement(m);
             }
             System.out.println("String is: " + s);
-            System.out.println("Origin is: " + benito.getOrigin().toString() );
-            System.out.println("Destination is: " + benito.getDestination().toString() );
         }
     }
 }

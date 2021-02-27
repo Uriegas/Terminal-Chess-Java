@@ -24,9 +24,11 @@ public class Chess {
             parser.Parse(input, board);
 
             //Aqui hay que implementar toda la validación del Parser/Movimientos
+            /*
             System.out.println("You entered: " + input);
             System.out.println("Origin is: " + parser.getOrigin().toString() );
             System.out.println("Destination is: " + parser.getDestination().toString() );
+            */
         }
 
         //Solo existen 3 posibles resultados del juego

@@ -1,5 +1,3 @@
-import javax.print.attribute.standard.Destination;
-
 //Parse from String to Coordinate
 //Ex. 1f -> 3f  ==  (0,7) -> (2,7)
 //l to see every legal move
@@ -13,40 +11,42 @@ public class Parser{
     private String s;
     //Substrings from s (Tokens)
     private String[] ss;
-    private int x, y;
-    private Coordinate origin, destination;
     private Move move;
 
     private boolean quitFlag;
     private boolean selectedOption; //Indica si el usuario no ingreso un movimiento, sino un 'comodin'
-    private boolean isInvalidMovement;
 
     private boolean legalMoves;
     private boolean undoMoves;
     private boolean randomMove;
 
     public Parser(){
-        //Initialize variables, except s
+        //Initialize variables, except s, it is initialized in Parser function
         this.ss = new String[3];
-        this.x = 0;
-        this.y = 0;
-        this.origin = new Coordinate();
-        this.destination = new Coordinate();
-        this.quitFlag = false;
-        this.selectedOption = true; //Por defecto verdadero, para no andar mandando coordenadas invalidas
-        this.isInvalidMovement = false;
         this.move = null;
+
+        //Flags
+        this.selectedOption = true; //Por defecto verdadero, para no andar mandando coordenadas invalidas
         this.legalMoves = false;
         this.undoMoves = false;
         this.randomMove = false;
+        this.quitFlag = false;
     }
 
-    public Coordinate getOrigin(){
-        return this.origin;
+    public boolean getSelectedOption(){
+        return this.selectedOption;
     }
 
-    public Coordinate getDestination(){
-        return this.destination;
+    public boolean getLegal(){
+        return this.legalMoves;
+    }
+
+    public boolean getUndo(){
+        return this.undoMoves;
+    }
+
+    public boolean getRandom(){
+        return this.randomMove;
     }
 
     public boolean getQuitFlag(){
@@ -58,13 +58,6 @@ public class Parser{
         this.s = this.s.replaceAll("\\s", "");
     }
 
-    public boolean getSelectedOption(){
-        return this.selectedOption;
-    }
-
-    public boolean getIsInvalidMovement(){
-        return this.isInvalidMovement;
-    }
     //Separate into strings of tokens 
     //Doesnt return value because it is treated inside the class
     private void Tokenizer(String s){
@@ -89,11 +82,10 @@ public class Parser{
         return false;
     }
 
-    //Parse from str 2 crd Ex. 3f == (2,7). RECUERDEN QUE EL ORIGEN EN VISTA DE IMPRESION SERA
-    // LA 8a, pero en el codigo 8a sera (0,0)
+    //Parse from str 2 coordinate
     //Recives a string of 2 chars
-    //Exception handling not implemented yet
     private Coordinate ParseCoordinate(String s){
+        int x, y;
             switch(s.charAt(0)){
                 case 'a': x = 0; break;
                 case 'b': x = 1; break;
@@ -139,23 +131,19 @@ public class Parser{
             else if(s.equals("quit"))
                 this.quitFlag = true;//Send a quit signal or something like that
         }
-        else{//Es una coordenada o una operación invalida
-            //Para saber si es coordenada o invalido, usamos la coordenada como flag
-            //Dado que obtenemos una coordenada de tipo (-1, -1) cuando es invalida.
-            //La otra es comprar el movimiento con la lista de posibles movimientos.
-
+        else{
             this.selectedOption = false; //No se seleccionó un 'comodín'
             this.legalMoves = false;
             this.undoMoves = false;
             this.randomMove = false;
 
-
+            //Parsear lo que ingreso
             this.Tokenizer(this.s);
-            this.origin = this.ParseCoordinate(this.ss[0]);
-            this.destination = this.ParseCoordinate(this.ss[2]);
+            Coordinate origin = this.ParseCoordinate(this.ss[0]);
+            Coordinate destination = this.ParseCoordinate(this.ss[2]);
 
-            //Si ingreso una coordenada invalida haz el movimiento nulo
-            if( origin.isInvalid() || this.destination.isInvalid() || !isValidMovement() ){
+            //Si ingreso algo invalido haz el movimiento nulo
+            if( origin.isInvalid() || destination.isInvalid() || !isValidMovement() ){
                 this.move = null;
                 return null;
             }
@@ -168,30 +156,7 @@ public class Parser{
                 move = new Move(current, destination, capture);
             else
                 move = new Move(current, destination);
-            /*
-            if(isValidMovement() == true){
-                isInvalidMovement = false;
-                //Parsea la coordenada, ya checamos que si es valida, pero todavia no checamos si es movimiento valido
-                this.Tokenizer(this.s);
-                this.origin = this.ParseCoordinate(this.ss[0]);
-                this.destination = this.ParseCoordinate(this.ss[2]);
-                //Checar si no se ingreso una casilla invalida
-                //Checar si esa casilla es un movimiento valido para la pieza en el origen
-            }
-            else//Ingreso algo invaldo
-                isInvalidMovement = true;
-
-            */
-            /*
-            if(pieceInCoordinate()){//Checar si la primer coordenada si tiene una pieza
-                //Como si tiene seguimos con el codigus
-                continue;
-            }
-            else
-                //Return algo invalido
-            */
         }
         return this.move;
     }
 }
-
