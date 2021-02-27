@@ -22,7 +22,7 @@ public class TestBoard
         //System.out.println(piece.toString());
         for(Move move : listaMovimientosMove)
         {
-            //System.out.println(move.toString()); No jala por toString null
+            System.out.println(move.toString()); // No jala por toString null
         }
 
         if(listaMovimientosMove.isEmpty())
