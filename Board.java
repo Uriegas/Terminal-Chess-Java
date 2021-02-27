@@ -90,7 +90,7 @@ public class Board
 				sizeOfBoard = this.boardDrawed.length();
 				currentPosition = new Coordinate(x, y);
 				for( int i=0; i<pieces.size(); i++){//Iterar sobre todas las piezas
-					if( currentPosition.equals( pieces.get(i).getPosition() ) ){//Si la pieza esta en la coordenada iterable, entonces agregala al string
+					if( currentPosition.equals( pieces.get(i).getCoordinate() ) ){//Si la pieza esta en la coordenada iterable, entonces agregala al string
 						//Seleccionar el color de la pieza segun la variable Color
 						if(pieces.get(i).getColor() == Color.WHITE)//Azul
 							this.boardDrawed += "\033[;34m" + pieces.get(i).getFigure() + "\u001B[0m" + ' ';
@@ -143,13 +143,22 @@ public class Board
 		return this.isStalemate;
 	}
 
-	public void makeMovement(){
-//		Move move;
+	//El valor retornado indica solamente si el movimiento fue exitoso (o sea que si se hizo o no)
+	public boolean makeMovement(Move move){
+		if(move == null)
+			return false;
+		else{
+			//this.movementHistory.push(move);
+			//Alternar entre jugadores cada que se haga un movimiento
+			this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 
-
-//		this.movementHistory.push(move);
-		//Alternar entre jugadores cada que se haga un movimiento
-		this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+			//Buscar la pieza que hace el movimiento y moverla
+			for(Piece pieza : pieces){
+				if( move.getPieceToMove().isEqual(pieza) )
+					pieza.setPosition(move.getNewPos());
+			}
+			return true;
+		}
 	}
 
 	public void undoMovement(String move){
@@ -172,7 +181,7 @@ public class Board
 		{
 			if(piece.getColor().equals(color))
 			{
-				listaPiezasCoordenadas.add(piece.getPosition());
+				listaPiezasCoordenadas.add(piece.getCoordinate());
 			}
 		}
 
@@ -183,7 +192,7 @@ public class Board
 	{
 		for(Piece piece : pieces)
 		{
-			if(piece.getPosition().equals(coordinate))
+			if(piece.getCoordinate().equals(coordinate))
 			{
 				return piece;
 				//System.out.println(piece.toString());
