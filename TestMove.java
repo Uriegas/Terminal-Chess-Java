@@ -5,7 +5,7 @@ public class TestMove {
         Piece king = new King(Color.BLACK, new Coordinate(0,3));
         Coordinate dest = new Coordinate(0,3);
 
-        Move movement = new Move(reina, dest, king);
+        Move movement = new Move(reina, dest);
         System.out.println(movement.toString());
     }
 }
