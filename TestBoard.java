@@ -14,7 +14,13 @@ public class TestBoard
         System.out.println("\n----------- Movimientos Posibles -----------\n");
         //myboard.obtenerPiezasPorColor();
 
-        Coordinate coordinate = new Coordinate(1,0);
+        //Peon
+        //Coordinate coordinate = new Coordinate(4,6);
+        //Reina
+        //Coordinate coordinate = new Coordinate(3,7);
+        //Caballito
+        Coordinate coordinate = new Coordinate(1,7);
+
         Piece pieza = myboard.obtenerPiezaCoordenadas(coordinate);
         Movimientos movimientos = new Movimientos();
         ArrayList<Move> listaMovimientosMove = new ArrayList<>(movimientos.obtenerMovimientos(pieza, myboard));

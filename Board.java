@@ -27,6 +27,7 @@ public class Board
 		this.isCheckMate = false;
 		this.currentPlayer = Color.WHITE;
 		this.isStalemate = false;
+		this.moves = new Movimientos();
 
 		pieces = new ArrayList<Piece>();
 
@@ -150,23 +151,27 @@ public class Board
 		else{
 			//this.movementHistory.push(move);
 			//Alternar entre jugadores cada que se haga un movimiento
-			this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 
 			//Obtener los posibles Movimientos de la Pieza en cuestion
-			ArrayList<Move> possibleMoves = new ArrayList<>( moves.obtenerMovimientos(move.getPieceToMove(), this) );
+			ArrayList<Move> possibleMoves = new ArrayList<>( moves.obtenerMovimientos(move.getPieceToMove(), this.get()) );
 
 			//Validar que sea un movimiento valido
-			for(Move m : possibleMoves )
-			if( move.isEqual(m) )
-			
-			//Buscar la pieza que hace el movimiento y moverla
-			for(Piece pieza : pieces){
-				if( move.getPieceToMove().isEqual(pieza) )
-					pieza.setPosition(move.getNewPos());
+			//Faltaría agregar los movimientos especiales de enroque en passant, etc
+			for(Move m : possibleMoves ){
+				if( move.isEqual(m) ){//Buscar el move que se quiere hacer en la lista de los posibles moves
+					for(Piece pieza : pieces){//Buscar la pieza que hace el movimiento y moverla;
+						if( move.getPieceToMove().isEqual(pieza) ){
+							pieza.setPosition(move.getNewPos());//Aqui se realiza el movimiento
+							this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+							return true;
+						}
+					}
+				}
 			}
-			return true;
+			//Si no se hizo el movimiento
+			return false;
 		}
-	}
+}
 
 	public void undoMovement(String move){
 		this.movementHistory.pop();
@@ -208,5 +213,8 @@ public class Board
 		return null;
 	}
 
-
+	//Method that returns current class instance 
+    private Board get() { 
+        return this; 
+    }
 }
