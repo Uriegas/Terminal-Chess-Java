@@ -14,7 +14,7 @@ ArrayList<Move> obtenerMovimientos(Piece, Board)
 Uriegas(Sabado)
 ```java
 void makemovements(Move)
-```java
+```
 Roberto(Sabado)
 ```java
 void isCheckMate()
