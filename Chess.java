@@ -21,7 +21,7 @@ public class Chess {
             System.out.print(" move. (Type '?' to see options.) > ");
 
             input = in.nextLine();
-            parser.Parse(input);
+            parser.Parse(input, board);
 
             //Aqui hay que implementar toda la validación del Parser/Movimientos
             System.out.println("You entered: " + input);

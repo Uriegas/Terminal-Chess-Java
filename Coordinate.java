@@ -78,4 +78,8 @@ public class Coordinate {
         }
         return s;
     }
+
+    public boolean isInvalid(){
+        return ( this.x == -1 || this.y == -1 ) ? true : false;
+    }
 }
