@@ -163,4 +163,34 @@ public class Board
 		return this.currentPlayer;
 	}
 
+		/// Isaac Pruebas
+
+	public List<Coordinate> obtenerPiezasPorColor(Color color)
+	{
+		List<Coordinate> listaPiezasCoordenadas = new ArrayList<>();
+		for(Piece piece : pieces)
+		{
+			if(piece.getColor().equals(color))
+			{
+				listaPiezasCoordenadas.add(piece.getPosition());
+			}
+		}
+
+		return listaPiezasCoordenadas;
+	}
+
+	public Piece obtenerPiezaCoordenadas(Coordinate coordinate)
+	{
+		for(Piece piece : pieces)
+		{
+			if(piece.getPosition().equals(coordinate))
+			{
+				return piece;
+				//System.out.println(piece.toString());
+			}
+		}
+		return null;
+	}
+
+
 }
