@@ -95,4 +95,8 @@ public class Move {
         else
             return false;
     }
+
+    public String toChessNotation(){
+        return this.oldPos.toChessNotation() + " -> " + this.newPos.toChessNotation();
+    }
 }

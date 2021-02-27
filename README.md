@@ -33,7 +33,9 @@ en [Coordinate.java](Coordinate.java), ya que asi también se llama la función 
 public boolean equals(Obj o)
 ```
 
-El parser debe retorna un objeto `Move`, en la clase [Chess.java](Chess.java) hacer la validación de las flags que estan dentro del Parser, pero en `Board.makeMovements()` hacer la validación de si el movimiento tiene piezas nulas
+El parser debe retorna un objeto `Move`, en la clase [Chess.java](Chess.java) hacer la validación de las flags que estan dentro del Parser, pero en `Board.makeMovements()` hacer la validación de si el movimiento tiene piezas nulas.  
+
+Arreglar bug en [Movimientos.java](Movimientos.java)  
 
 ## Chess Concepts  
 **Checkmate** is a game position in which a player's king is in check (threatened with capture) and there is no way to avoid the threat.  
