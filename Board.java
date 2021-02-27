@@ -171,13 +171,27 @@ public class Board
 			//Si no se hizo el movimiento
 			return false;
 		}
-}
+	}
 
 	public void undoMovement(String move){
-		this.movementHistory.pop();
-		//
-		//
+		if(movementHistory.empty())//Si esta vacia la lista de movimientos no hagas el undo
+			return;
+
 		this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+		Move undoMove = this.movementHistory.pop();
+		Piece pieceToUndo;
+
+		pieceToUndo = undoMove.getPieceToMove();//Get the piece to undo
+		pieceToUndo.setPosition(undoMove.getNewPos());//Set the current position of the piece in board
+		//
+		for(Piece pieza : pieces)
+			if( pieza.isEqual( pieceToUndo ) )
+				pieza.setPosition(undoMove.getOldPos());//Set old pos to the piece to undo
+
+		//Falta agregar recuperar la otra pieza. Seria...
+		//Si se capturó una pieza entonces restaurala
+		if(undoMove.getPieceToCapture() != null)
+			pieces.add(undoMove.getPieceToCapture());
 	}
 
 	public Color getCurrentPlayer(){
