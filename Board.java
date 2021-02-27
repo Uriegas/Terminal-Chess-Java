@@ -173,7 +173,7 @@ public class Board
 		}
 	}
 
-	public void undoMovement(String move){
+	public void undoMovement(){
 		if(movementHistory.empty())//Si esta vacia la lista de movimientos no hagas el undo
 			return;
 
@@ -232,18 +232,29 @@ public class Board
         return this; 
     }
 
-	public String listPlayerMoves(Color c){
+	public String listPlayerMoves(){
 		String s = new String();
 		ArrayList<Move> possibleMoves = new ArrayList<>();
 
 		//Add all possible moves of all pieces
 		for( Piece piece : pieces )
-			if(piece.getColor() == c)//If the piece's color is of the current color, then add the movements of that piece
+			if(piece.getColor() == this.currentPlayer)//If the piece's color is of the current color, then add the movements of that piece
 				if( ! moves.obtenerMovimientos(piece, this.get()).isEmpty() )
 					possibleMoves.addAll( moves.obtenerMovimientos(piece, this.get()) );
 
 		for( Move m : possibleMoves )
 			s += m.toChessNotation() + '\n';
 		return s;
+	}
+
+	public ArrayList<Move> possibleMovesCurrentPlayer(){
+		ArrayList<Move> possibleMoves = new ArrayList<>();
+		//Add all possible moves of all pieces
+		for( Piece piece : pieces )
+			if(piece.getColor() == this.currentPlayer)//If the piece's color is of the current color, then add the movements of that piece
+				if( ! moves.obtenerMovimientos(piece, this.get()).isEmpty() )
+					possibleMoves.addAll( moves.obtenerMovimientos(piece, this.get()) );
+		return possibleMoves;
+
 	}
 }
