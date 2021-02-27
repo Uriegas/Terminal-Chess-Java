@@ -8,17 +8,17 @@ Terminal Chess Java
 
 ## TODO
 Isaac (Para hoy)
-```
+```java
 ArrayList<Move> obtenerMovimientos(Piece, Board)
 ```
 Uriegas(Sabado)
-```
-makemovements(Move)
+```java
+void makemovements(Move)
 ```
 Roberto(Sabado)
-```
-isCheckMate()
-undoMovement()
+```java
+void isCheckMate()
+void undoMovement()
 ```
 Despues implementar todo ello en clase Chess.  
 E ir añadiendo las validaciones en Movimientos para la clase Move.
