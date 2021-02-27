@@ -6,6 +6,20 @@ Terminal Chess Java
 [Overleaf - Ver](https://www.overleaf.com/read/jwprchbnfsbw)  
 [Overleaf - Editar](https://www.overleaf.com/9577246851cdscmhvgdnwm)  
 
+## TODO Para Domingo
+Isaac
+```
+ArrayList<Move> obtenerMovimientos(Piece, Board)
+```
+Uriegas
+```
+makemovements(Move)
+```
+Roberto
+```
+isCheckMate()
+undoMovement()
+```
 ## Chess Concepts  
 **Checkmate** is a game position in which a player's king is in check (threatened with capture) and there is no way to avoid the threat.  
 

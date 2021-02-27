@@ -20,7 +20,6 @@ public class Move {
     private Coordinate newPos;
     private Piece pieceToCapture;
 
-
     Move(Piece piece, Coordinate destionation, Piece toCapture){
         this.checkmate = false;
         this.kingsideCastle = false;

@@ -2,11 +2,13 @@ import java.util.*;
 
 public class Board
 {
+	//private Movimientos movimiento;
+
 	private int filas;//8
 	private int columnas;//8
 	private String[][] board;//El tablero chicas, no se que haga Isaac
 
-	private Stack<String> movementHistory; //El historial chicas
+	private Stack<Move> movementHistory; //El historial chicas
 	private ArrayList<Piece> pieces; //Array de piezas
 	private String boardDrawed;//El tablero dibujado
 	private Color currentPlayer; //Cambiarla cada que se agrega un movimiento
@@ -141,18 +143,24 @@ public class Board
 		return this.isStalemate;
 	}
 
-	public void makeMovement(String move){
-		this.movementHistory.push(move);
+	public void makeMovement(){
+//		Move move;
+
+
+//		this.movementHistory.push(move);
 		//Alternar entre jugadores cada que se haga un movimiento
 		this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 	}
 
 	public void undoMovement(String move){
 		this.movementHistory.pop();
+		//
+		//
 		this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 	}
 
 	public Color getCurrentPlayer(){
 		return this.currentPlayer;
 	}
+
 }
