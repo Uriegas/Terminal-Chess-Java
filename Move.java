@@ -53,9 +53,15 @@ public class Move {
     }
 
     public String toString(){
-        return   "----Current  Piece----\n" + this.piece.toString()
-               + "---Piece to Capture---\n" + this.pieceToCapture.toString()
-               + "\n-------Flags--------"
+        String s = "";
+
+        s +=  "----Current  Piece----\n" + this.piece.toString();
+        if(this.pieceToCapture == null)
+            s += "---Piece to Capture---\n" + "NONE piece to Capture\n";
+        else
+            s += "---Piece to Capture---\n" + this.pieceToCapture.toString();
+
+        s     += ("\n-------Flags--------"
                + "\nCheckmate = " + Boolean.toString(this.checkmate)
                + "\nKing Side Castle = " + Boolean.toString(this.kingsideCastle)
                + "\nQueen Side Castle = " + Boolean.toString(this.queensideCastle)
@@ -63,6 +69,7 @@ public class Move {
                + "\nPassant = " + Boolean.toString(this.passant)
                + "\nStalemate = " + Boolean.toString(this.stalemate)
                + "\nSpecial Move Piece = " + Boolean.toString(this.specialMovePiece)
-               + "\nRook Move = " + Boolean.toString(this.rookMove);
+               + "\nRook Move = " + Boolean.toString(this.rookMove) );
+        return s;
     }
 }
