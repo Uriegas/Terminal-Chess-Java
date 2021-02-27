@@ -25,7 +25,7 @@ public class Movimientos
 	public List<Move> obtenerMovimientos(Piece pieza, Board board)
 	{
 		this.pieza = pieza;
-		this.coordinate = pieza.getPosition();
+		this.coordinate = pieza.getCoordinate();
 		this.coordenadaX = this.coordinate.getX();
 		this.coordenadaY = this.coordinate.getY();
 		this.board = board;

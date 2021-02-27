@@ -31,7 +31,7 @@ public class Move {
         this.rookMove = false;
         
         this.piece = piece;
-        this.oldPos = this.piece.getPosition();
+        this.oldPos = this.piece.getCoordinate();
         this.newPos = destionation;
         this.pieceToCapture = toCapture;
     }
@@ -47,7 +47,7 @@ public class Move {
         this.rookMove = false;
         
         this.piece = piece;
-        this.oldPos = this.piece.getPosition();
+        this.oldPos = this.piece.getCoordinate();
         this.newPos = destionation;
         this.pieceToCapture = null;
     }
@@ -71,5 +71,20 @@ public class Move {
                + "\nSpecial Move Piece = " + Boolean.toString(this.specialMovePiece)
                + "\nRook Move = " + Boolean.toString(this.rookMove) );
         return s;
+    }
+
+    public Piece getPieceToMove(){
+        return this.piece;
+    }
+    public Piece getPieceToCapture(){
+        return this.pieceToCapture;
+    }
+
+    public Coordinate getOldPos(){
+        return this.oldPos;
+    }
+
+    public Coordinate getNewPos(){
+        return this.newPos;
     }
 }

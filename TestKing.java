@@ -18,8 +18,8 @@ public class TestKing {
             //Pasa de string a coordenada y cambia la coordenada del rey
             userInput.Parse(s);
             myking.setPosition(userInput.getDestination());
-            System.out.println("Pieza en: " + myking.getPosition().toString());
-            System.out.println("Pieza en: " + myking.getPosition().toChessNotation());
+            System.out.println("Pieza en: " + myking.getCoordinate().toString());
+            System.out.println("Pieza en: " + myking.getCoordinate().toChessNotation());
         }
     }
 }

@@ -22,6 +22,7 @@ public class Chess {
 
             input = in.nextLine();
             parser.Parse(input);
+
             //Aqui hay que implementar toda la validación del Parser/Movimientos
             System.out.println("You entered: " + input);
             System.out.println("Origin is: " + parser.getOrigin().toString() );
