@@ -29,7 +29,7 @@ public class Board
 		this.isStalemate = false;
 		this.moves = new Movimientos();
 
-		pieces = new ArrayList<Piece>();
+		this.pieces = new ArrayList<Piece>();
 
 		//Inicializar piezas, PD. se ve horribe pero jala
 		//Inicializar peones
@@ -132,6 +132,22 @@ public class Board
 		else
 			this.isCheckMate = false;
 			*/
+		for (int i = 0; i < pieces.size(); i++){
+			if(this.pieces.get(i).getColor() == Color.WHITE && this.pieces.get(i).getFigure() == '♚'){
+				if(movs.obtenerMovimientos(pieces.get(i), this) = null){
+					this.isCheckMate = true;
+				}else{
+					this.isCheckMate = false;
+				}
+			}else if (this.pieces.get(i).getColor() == Color.BLACK && this.pieces.get(i).getFigure() == '♚'){
+				if(movs.obtenerMovimientos(pieces.get(i), this) = null){
+					this.isCheckMate = true;
+				}else{
+					this.isCheckMate = false;
+				}
+			}
+		}
+		
 		return this.isCheckMate;
 	}
 
