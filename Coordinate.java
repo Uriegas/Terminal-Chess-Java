@@ -55,17 +55,6 @@ public class Coordinate {
     public String toChessNotation(){
         String s = "";
         switch(this.x){
-            case 7: s+='1'; break;
-            case 6: s+='2'; break;
-            case 5: s+='3'; break;
-            case 4: s+='4'; break;
-            case 3: s+='5'; break;
-            case 2: s+='6'; break;
-            case 1: s+='7'; break;
-            case 0: s+='8'; break;
-            default: s+="-1"; break;//Invalid
-        }
-        switch(this.y){
             case 0: s+='a'; break;
             case 1: s+='b'; break;
             case 2: s+='c'; break;
@@ -74,6 +63,17 @@ public class Coordinate {
             case 5: s+='f'; break;
             case 6: s+='g'; break;
             case 7: s+='h'; break;
+            default: s+="-1"; break;//Invalid
+        }
+        switch(this.y){
+            case 7: s+='1'; break;
+            case 6: s+='2'; break;
+            case 5: s+='3'; break;
+            case 4: s+='4'; break;
+            case 3: s+='5'; break;
+            case 2: s+='6'; break;
+            case 1: s+='7'; break;
+            case 0: s+='8'; break;
             default: s+="-1"; break;//Invalid
         }
         return s;
