@@ -6,10 +6,6 @@ public class TestBoard
     {
         Board myboard = new Board(8,8);
         System.out.println(myboard.drawBoard());
-        myboard.boardToLetters();
-        System.out.println(myboard.drawBoard());
-        myboard.boardToFigures();
-        System.out.println(myboard.drawBoard());
 
         System.out.println("\n----------- Movimientos Posibles -----------\n");
         //myboard.obtenerPiezasPorColor();
@@ -19,18 +15,20 @@ public class TestBoard
         //Reina
         //Coordinate coordinate = new Coordinate(3,7);
         //Caballito
-        Coordinate coordinate = new Coordinate(1,7);
+        Coordinate coordinate = new Coordinate(1,0);
 
         Piece pieza = myboard.obtenerPiezaCoordenadas(coordinate);
         Movimientos movimientos = new Movimientos();
         ArrayList<Move> listaMovimientosMove = new ArrayList<>(movimientos.obtenerMovimientos(pieza, myboard));
 
-        //System.out.println(piece.toString());
+        System.out.println("\n\n\n\n");
         for(Move move : listaMovimientosMove)
         {
             System.out.println(move.toString()); // No jala por toString null
         }
 
+        //NEGROS == ROJO
+        //WHITE == AZUL
         if(listaMovimientosMove.isEmpty())
         {
             System.out.println("Lista vacia");
