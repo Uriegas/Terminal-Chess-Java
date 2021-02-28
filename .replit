@@ -1,2 +1,0 @@
-  language = "java"
-run = "javac Chess.java; java Chess"
