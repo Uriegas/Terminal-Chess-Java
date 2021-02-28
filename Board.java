@@ -145,7 +145,8 @@ public class Board
 		this.isCheckMate = false;
 		*/
 		if(!movementHistory.empty()){
-			int tamanio = (int)moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size();
+			int tamanio = (int) moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size();
+
 			System.out.println("tamaño " + tamanio);
 		}
 		
