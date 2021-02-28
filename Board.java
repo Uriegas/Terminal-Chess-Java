@@ -253,14 +253,7 @@ public class Board
 
 	public String listPlayerMoves(){
 		String s = new String();
-		ArrayList<Move> possibleMoves = new ArrayList<>();
-
-		//Add all possible moves of all pieces
-		for( Piece piece : pieces )
-			if(piece.getColor() == this.currentPlayer)//If the piece's color is of the current color, then add the movements of that piece
-				if( ! moves.obtenerMovimientos(piece, this.get()).isEmpty() )
-					possibleMoves.addAll( moves.obtenerMovimientos(piece, this.get()) );
-
+		ArrayList<Move> possibleMoves = new ArrayList<>(possibleMovesCurrentPlayer());
 		for( Move m : possibleMoves )
 			s += m.toChessNotation() + '\n';
 		return s;
