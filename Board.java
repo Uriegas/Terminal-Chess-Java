@@ -135,13 +135,13 @@ public class Board
 			*/
 		for (int i = 0; i < pieces.size(); i++){
 			if(this.pieces.get(i).getColor() == Color.WHITE && this.pieces.get(i).getFigure() == '♚'){
-				if(movs.obtenerMovimientos(pieces.get(i), this) = null){
+				if(moves.obtenerMovimientos(pieces.get(i), this) == null){
 					this.isCheckMate = true;
 				}else{
 					this.isCheckMate = false;
 				}
 			}else if (this.pieces.get(i).getColor() == Color.BLACK && this.pieces.get(i).getFigure() == '♚'){
-				if(movs.obtenerMovimientos(pieces.get(i), this) = null){
+				if(moves.obtenerMovimientos(pieces.get(i), this) == null){
 					this.isCheckMate = true;
 				}else{
 					this.isCheckMate = false;
