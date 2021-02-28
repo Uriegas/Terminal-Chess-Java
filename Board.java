@@ -144,10 +144,19 @@ public class Board
 		}
 		this.isCheckMate = false;
 		*/
+		
+		coordinate = moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this).get(j).getPieceInMove().getCoordinate())
 		if(!movementHistory.empty()){
 			int tamanio = (int) moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size();
-
 			System.out.println("tamaño " + tamanio);
+			for (int i = 0; i < pieces.size(); i++){
+				if(this.pieces.get(i).getColor() == getCurrentPlayer() && this.pieces.get(i).getFigure() == '♚'){
+					for(int j = 0; j < tamanio; j++){
+
+					}
+				}
+			}
+			
 		}
 		
 		/*
