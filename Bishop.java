@@ -20,7 +20,7 @@ public class Bishop extends Piece implements Cloneable{
 
     //Copy Constructor
     public Bishop(Bishop b){
-        this(b.getColor(), b.getCoordinate());
+        this(b.getColor(), new Coordinate(b.getCoordinate()));
     }
 
     @Override

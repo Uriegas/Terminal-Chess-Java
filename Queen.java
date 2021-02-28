@@ -29,7 +29,7 @@ public class Queen extends Piece{
     
     //Copy Constructor
     public Queen(Queen q){
-        this(q.getColor(), q.getCoordinate());
+        this(q.getColor(), new Coordinate(q.getCoordinate()));
     }
 
     @Override

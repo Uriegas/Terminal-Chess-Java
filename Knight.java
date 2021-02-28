@@ -25,7 +25,7 @@ public class Knight extends Piece{
 
     //Copy Constructor
     public Knight(Knight k){
-        this(k.getColor(), k.getCoordinate());
+        this(k.getColor(), new Coordinate(k.getCoordinate()));
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Pawn extends Piece{
     
     //Copy Constructor
     public Pawn(Pawn p){
-        this(p.getColor(), p.getCoordinate());
+        this(p.getColor(), new Coordinate(p.getCoordinate()));
     }
 
     @Override

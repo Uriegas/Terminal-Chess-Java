@@ -26,7 +26,7 @@ public class Rook extends Piece{
     
     //Copy Constructor
     public Rook(Rook r){
-        this(r.getColor(), r.getCoordinate());
+        this(r.getColor(), new Coordinate(r.getCoordinate()));
     }
 
     @Override
