@@ -133,6 +133,17 @@ public class Board
 		else
 			this.isCheckMate = false;
 			*/
+
+		
+		return this.isCheckMate;
+	}
+
+	public boolean isStalemate(){
+		//Si el rey no tiene movimientos validos pero no esta siendo atacado
+		/*
+		if(this.isThereLegalMoves("King") == false && this.isThreaten("King"))
+			this.isCheckMate = true;//Es hackemate
+		*/
 		for (int i = 0; i < pieces.size(); i++){
 			if(this.pieces.get(i).getColor() == Color.WHITE && this.pieces.get(i).getFigure() == '♚'){
 				if(moves.obtenerMovimientos(pieces.get(i), this) == null){
@@ -148,16 +159,7 @@ public class Board
 				}
 			}
 		}
-		
-		return this.isCheckMate;
-	}
 
-	public boolean isStalemate(){
-		//Si el rey no tiene movimientos validos pero no esta siendo atacado
-		/*
-		if(this.isThereLegalMoves("King") == false && this.isThreaten("King"))
-			this.isCheckMate = true;//Es hackemate
-		*/
 		return this.isStalemate;
 	}
 
