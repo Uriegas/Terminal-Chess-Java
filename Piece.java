@@ -39,7 +39,7 @@ public abstract class Piece extends Coordinate{
         position.setPosition(other);
     }
 
-    public Coordinate getPosition(){
+    public Coordinate getCoordinate(){
         return position;
     }
 
@@ -78,4 +78,11 @@ public abstract class Piece extends Coordinate{
                 "Position: " + this.position.toString() + '\n';
     }
     public void setFigureToFigure(){}
+
+    public boolean isEqual(Piece p){
+        if( this.getCoordinate().equals(p.getCoordinate()) )//Si tienen la misma coordenada
+            return true;
+        else
+            return false;
+    }
 }
