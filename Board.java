@@ -138,6 +138,7 @@ public class Board
 		//La monstruosidad moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size() 
 		// PRácticamente me dará el tamaño de los posibles movimientos que tendrá la ultima pieza que se movió en el historial, según su 
 		//coordenada nueva.
+		/*
 		if(!movementHistory.empty()){
 			for (int i = 0; i < pieces.size(); i++){
 				if(this.pieces.get(i).getColor() == getCurrentPlayer() && this.pieces.get(i).getFigure() == '♚'){
@@ -151,7 +152,7 @@ public class Board
 				}
 			}
 		}
-		
+		*/
 
 		
 		return this.isCheckMate;
@@ -195,13 +196,24 @@ public class Board
 			//Validar que sea un movimiento valido
 			//Faltaría agregar los movimientos especiales de enroque en passant, etc
 			for(Move m : possibleMoves ){
-				if( move.isEqual(m) ){//Buscar el move que se quiere hacer en la lista de los posibles moves
+				if( m.isEqual(move) ){//Buscar el move que se quiere hacer en la lista de los posibles moves
 					for(Piece pieza : pieces){//Buscar la pieza que hace el movimiento y moverla;
 						if( move.getPieceToMove().isEqual(pieza) ){
-							pieza.setPosition(move.getNewPos());//Aqui se realiza el movimiento
+							pieza.setPosition(m.getNewPos());//Aqui se realiza el movimiento
 							this.movementHistory.push(move);
 							this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
-							return true;
+
+							if(move.getPieceToCapture() != null){//Si hay pieza para comer, entonces cometela
+								for(Piece p : pieces){//Buscar la pieza a comer
+									if(move.getPieceToCapture().isEqual(p)){
+										pieces.remove(p);
+										break;
+									}
+								}
+								return true;
+							}
+							else //Si no hay para comer pues retorna verdadero de todas formas porque
+								return true;
 						}
 					}
 				}
@@ -217,15 +229,17 @@ public class Board
 
 		this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 		Move undoMove = this.movementHistory.pop();
-		Piece pieceToUndo;
+		Piece pieceToUndo = null;
 
 		pieceToUndo = undoMove.getPieceToMove();//Get the piece to undo
 		pieceToUndo.setPosition(undoMove.getNewPos());//Set the current position of the piece in board
 		//
-		for(Piece pieza : pieces)
-			if( pieza.isEqual( pieceToUndo ) )
-				pieza.setPosition(undoMove.getOldPos());//Set old pos to the piece to undo
-
+		for( int i = 0; i < pieces.size(); i++){
+			if( pieceToUndo.isEqual(pieces.get(i)) ){
+				pieces.get(i).setPosition(undoMove.getPieceInMove().getCoordinate());
+				break;
+			}
+		}
 		//Falta agregar recuperar la otra pieza. Seria...
 		//Si se capturó una pieza entonces restaurala
 		if(undoMove.getPieceToCapture() != null)

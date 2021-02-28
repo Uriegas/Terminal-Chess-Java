@@ -36,11 +36,11 @@ public abstract class Piece extends Coordinate{
     }
 
     public void setPosition(Coordinate other){
-        position.setPosition(other);
+        this.position.setPosition(other);
     }
 
     public Coordinate getCoordinate(){
-        return position;
+        return this.position;
     }
 
     //Añado el get color para cuestiones de implementación de color de figuras en posiciones (Creo que se usará)

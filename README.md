@@ -39,6 +39,8 @@ Arreglar bug en [Movimientos.java](Movimientos.java)
 
 Undo Movements no funciona
 
+No puedo hacer el undo porque en el makeMovement hay un bug, no se porque cada que hago un push al stack de Moves, me cambia los datos del movimiento que agrego.
+
 ## Chess Concepts  
 **Checkmate** is a game position in which a player's king is in check (threatened with capture) and there is no way to avoid the threat.  
 
