@@ -28,6 +28,11 @@ public class King extends Piece{
         this(k.getColor(), k.getCoordinate());
     }
 
+    @Override
+    public King deepCopy(){
+        return new King(this);
+    }
+
     public King(){
         this(Color.WHITE, new Coordinate(0,4));
     }

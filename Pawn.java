@@ -16,6 +16,11 @@ public class Pawn extends Piece{
         this(p.getColor(), p.getCoordinate());
     }
 
+    @Override
+    public Pawn deepCopy(){
+        return new Pawn(this);
+    }
+
     private void initPossibleMoves(){
         if(super.getColor() == Color.WHITE){
             this.mvm.add(new Coordinate(0, 1));

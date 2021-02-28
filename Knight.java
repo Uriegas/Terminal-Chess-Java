@@ -28,6 +28,11 @@ public class Knight extends Piece{
         this(k.getColor(), k.getCoordinate());
     }
 
+    @Override
+    public Knight deepCopy(){
+        return new Knight(this);
+    }
+
     public char getFigure(){
         return super.getFigure();
     }

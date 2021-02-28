@@ -29,6 +29,11 @@ public class Rook extends Piece{
         this(r.getColor(), r.getCoordinate());
     }
 
+    @Override
+    public Rook deepCopy(){
+        return new Rook(this);
+    }
+
     //Prueba Viernes  ¿? XD, le puse donde debería estar 1 vdd
     public Rook(){
         super(Color.WHITE, new Coordinate(0,0));

@@ -32,6 +32,11 @@ public class Queen extends Piece{
         this(q.getColor(), q.getCoordinate());
     }
 
+    @Override
+    public Queen deepCopy(){
+        return new Queen(this);
+    }
+
     //Prueba Viernes
     public Queen(){
         super(Color.WHITE, new Coordinate(0,3));

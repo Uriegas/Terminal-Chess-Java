@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Bishop extends Piece{
+public class Bishop extends Piece implements Cloneable{
     //private char figure = '♝';
 
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
@@ -21,6 +21,11 @@ public class Bishop extends Piece{
     //Copy Constructor
     public Bishop(Bishop b){
         this(b.getColor(), b.getCoordinate());
+    }
+
+    @Override
+    public Bishop deepCopy(){
+        return new Bishop(this);
     }
 
     public char getFigure(){

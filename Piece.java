@@ -42,6 +42,8 @@ public abstract class Piece extends Coordinate{
         */
     }
 
+    public abstract Piece deepCopy();
+
     public void setPosition(Coordinate other){
         this.position.setPosition(other);
     }
