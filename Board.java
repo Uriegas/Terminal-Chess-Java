@@ -134,6 +134,23 @@ public class Board
 			this.isCheckMate = false;
 			*/
 
+				
+		//La monstruosidad moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size() 
+		// PRácticamente me dará el tamaño de los posibles movimientos que tendrá la ultima pieza que se movió en el historial, según su 
+		//coordenada nueva.
+		for (int i = 0; i < pieces.size(); i++){
+			if(this.pieces.get(i).getColor() == getCurrentPlayer() && this.pieces.get(i).getFigure() == '♚'){
+				for(int j = 0; j < moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size(); j++){
+					if(this.pieces.get(i).getCoordinate() == moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).get(i)){
+						this.isCheckMate = true;
+					}else{
+						this.isCheckMate = false;
+					}
+				}
+			}
+		}
+		
+
 		
 		return this.isCheckMate;
 	}
