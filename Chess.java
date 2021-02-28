@@ -13,7 +13,7 @@ public class Chess {
         System.out.println("A simple chess game from your terminal");
         System.out.println("¡¡Whites move first!!\n");
 
-        while(!board.isCheckMate() && !parser.getQuitFlag() && !board.isStalemate() ){//While there is no checkmate, stalemate or a quit
+        while((!board.isCheckMate() && !parser.getQuitFlag()) && !board.isStalemate() ){//While there is no checkmate, stalemate or a quit
             System.out.println(board.drawBoard() + '\n');//Dibujar el tablero
             if(board.getCurrentPlayer() == Color.WHITE)//Alternar entre jugador WHITE y BLACK
                 System.out.print("Blues");

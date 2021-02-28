@@ -137,23 +137,36 @@ public class Board
 				
 		//La monstruosidad moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size() 
 		// PRácticamente me dará el tamaño de los posibles movimientos que tendrá la ultima pieza que se movió en el historial, según su 
-		//coordenada nueva.
+		//coordenada nueva.     obtenerPiezaCoordenadas(movementHistory.peek().getNewPos())
+		/*
+		for (int i = 0; i < moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this).size(); i++){
+			System.out.println(moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this).get(i).getPieceInMove().getCoordinate().toString());
+		}
+		this.isCheckMate = false;
+		*/
+		if(!movementHistory.empty()){
+			int tamanio = (int)moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size();
+			System.out.println("tamaño " + tamanio);
+		}
+		
 		/*
 		if(!movementHistory.empty()){
 			for (int i = 0; i < pieces.size(); i++){
 				if(this.pieces.get(i).getColor() == getCurrentPlayer() && this.pieces.get(i).getFigure() == '♚'){
-					for(int j = 0; j < moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size(); j++){
-						if(this.pieces.get(i).getCoordinate() == moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).get(i).getPieceInMove().getCoordinate()){
+					for(int j = 0; j < moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this).size(); j++){
+						if(this.pieces.get(i).getCoordinate().equals(moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this).get(j).getPieceInMove().getCoordinate())){
 							this.isCheckMate = true;
+							
 						}else{
+							
 							this.isCheckMate = false;
 						}
 					}
 				}
+				
 			}
 		}
 		*/
-
 		
 		return this.isCheckMate;
 	}
