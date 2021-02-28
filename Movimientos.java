@@ -3,7 +3,7 @@ public class Movimientos
 {
 	//Color piezaBlanca = Color.WHITE;
     //Color piezaNegra = Color.BLACK;
-
+	private String nombrePieza;
 	private Piece pieza;
 	private int coordenadaX;
 	private int coordenadaY;
@@ -24,14 +24,16 @@ public class Movimientos
 
 	public List<Move> obtenerMovimientos(Piece pieza, Board board)
 	{
+		this.listaMovimientosFiltrados.clear();
+		this.listaMovimientosMove.clear();
 		this.pieza = pieza;
 		this.coordinate = pieza.getCoordinate();
 		this.coordenadaX = this.coordinate.getX();
 		this.coordenadaY = this.coordinate.getY();
 		this.board = board;
 		
-		String nombrePieza = pieza.getPiece_Type();
-		System.out.println(nombrePieza);
+		this.nombrePieza = pieza.getPiece_Type();
+		System.out.println(nombrePieza+"X");
 		System.out.println(coordenadaX);
 		System.out.println(coordenadaY);
 		System.out.println(pieza.getColor());
@@ -93,13 +95,14 @@ public class Movimientos
 				}
 				else
 				{
-					System.out.println("Peon Color BLANCO");
+					System.out.println("Peon Color Blanco");
 					this.movimientoPeonBlanco();
 				}
 				break;
 			}
 		}
 
+		this.mostrarMovimientosFiltrados();
 		this.agregarMovimientosMove();
 		return this.listaMovimientosMove;
 	}
@@ -138,9 +141,13 @@ public class Movimientos
 
 	public void movimientosCaballo()
 	{
+		//System.out.println("movimientoLIzquierdaSuperior");
 		this.movimientoLIzquierdaSuperior();
+		//System.out.println("movimientoLIzquierdaInferior");
 		this.movimientoLIzquierdaInferior();
+		//System.out.println("movimientoLDerechaSuperior");
 		this.movimientoLDerechaSuperior();
+		//System.out.println("movimientoLDerechaInferior");
 		this.movimientoLDerechaInferior();
 	}
 
@@ -498,23 +505,20 @@ public class Movimientos
 	{
 		//Movimientos Esquina Superior Izquiera
 		//System.out.println("--------------------------");
-		int columnas = this.coordenadaY - 2;
-		int filas = this.coordenadaX - 1;
-		for(int pasos = 0; pasos < 2; pasos++, filas--, columnas++)
+		int columnas = this.coordenadaY - 1;
+		int filas = this.coordenadaX - 2;
+		for(int pasos = 0; pasos < 2; pasos++, filas++, columnas--)
 		{
 			if(this.verificarMovimientoLimitesTablero(filas, columnas))
 			{
 				Coordinate coordenada = new Coordinate(filas, columnas);
+				//System.out.println(coordenada.toString());
 				if(this.validarMovimientos(coordenada))
 				{
 					if(this.validarMovimientos(coordenada) && this.agregarMovimientoSinDuplicarse(coordenada))
 					{
 						this.listaMovimientosFiltrados.add(coordenada);
 					}
-				}
-				else
-				{
-					break;
 				}
 			}
 		}
@@ -523,32 +527,6 @@ public class Movimientos
 	public void movimientoLIzquierdaInferior()
 	{
 		//Movimientos Esquina Inferior Izquierda
-		//System.out.println("--------------------------");
-		int columnas = this.coordenadaY - 2;
-		int filas = this.coordenadaX + 1;
-		for(int pasos = 0; pasos < 2; pasos++, filas++, columnas++)
-		{
-			if(this.verificarMovimientoLimitesTablero(filas, columnas))
-			{
-				Coordinate coordenada = new Coordinate(filas, columnas);
-				if(this.validarMovimientos(coordenada))
-				{
-					if(this.validarMovimientos(coordenada) && this.agregarMovimientoSinDuplicarse(coordenada))
-					{
-						this.listaMovimientosFiltrados.add(coordenada);
-					}
-				}
-				else
-				{
-					break;
-				}
-			}
-		}
-	}
-
-	public void movimientoLDerechaSuperior()
-	{
-		//Movimientos Esquina Superior Derecha
 		//System.out.println("--------------------------");
 		int columnas = this.coordenadaY + 1;
 		int filas = this.coordenadaX - 2;
@@ -564,9 +542,27 @@ public class Movimientos
 						this.listaMovimientosFiltrados.add(coordenada);
 					}
 				}
-				else
+			}
+		}
+	}
+
+	public void movimientoLDerechaSuperior()
+	{
+		//Movimientos Esquina Superior Derecha
+		//System.out.println("--------------------------");
+		int columnas = this.coordenadaY - 2;
+		int filas = this.coordenadaX + 1;
+		for(int pasos = 0; pasos < 2; pasos++, filas++, columnas++)
+		{
+			if(this.verificarMovimientoLimitesTablero(filas, columnas))
+			{
+				Coordinate coordenada = new Coordinate(filas, columnas);
+				if(this.validarMovimientos(coordenada))
 				{
-					break;
+					if(this.validarMovimientos(coordenada) && this.agregarMovimientoSinDuplicarse(coordenada))
+					{
+						this.listaMovimientosFiltrados.add(coordenada);
+					}
 				}
 			}
 		}
@@ -590,21 +586,76 @@ public class Movimientos
 						this.listaMovimientosFiltrados.add(coordenada);
 					}
 				}
-				else
-				{
-					break;
-				}
 			}
 		}
 	}
 
+	//PEON BLANCO == AZUL
 	public void movimientoPeonBlanco()
 	{
-		int filas = this.coordenadaX - 1;
-		int columnas = this.coordenadaY;
+		int filas = this.coordenadaX;
+		int columnas = this.coordenadaY-1;
 
 		//System.out.println("--------------------------");
-		for(int pasos = 0; pasos < 2; pasos++, filas--)
+		int movimientoInicial = 1;
+		if(this.validarMovimientoInicialPeon(this.coordinate))
+		{
+			movimientoInicial = 0;
+		}
+		System.out.println("Para " + movimientoInicial);
+		for(int pasos = movimientoInicial; pasos < 2; pasos++, columnas--)
+		{
+			if(this.verificarMovimientoLimitesTablero(filas, columnas))
+			{
+				Coordinate coordenada = new Coordinate(filas, columnas);
+
+				if(this.validarMovimientos(coordenada))
+				{
+					if(this.validarMovimientos(coordenada) && this.agregarMovimientoSinDuplicarse(coordenada))
+					{
+						this.listaMovimientosFiltrados.add(coordenada);
+					}
+				}
+				else
+				{
+					break;
+				}
+			}
+		}
+
+		filas = this.coordenadaX-1;
+		columnas = this.coordenadaY-1;
+		for(int pasos = 0; pasos < 2; pasos++, filas = filas+2)
+		{
+			if(this.verificarMovimientoLimitesTablero(filas, columnas))
+			{
+				Coordinate coordenada = new Coordinate(filas, columnas);
+				if(this.validarMovimientoConOponente(coordenada))
+				{
+					this.listaMovimientosFiltrados.add(coordenada);
+				}
+			}
+		}
+
+
+	}
+
+	//PEON BLACK == ROJO
+	public void movimientoPeonNegro()
+	{
+		int filas = this.coordenadaX;
+		int columnas = this.coordenadaY+1;
+
+
+		//System.out.println("--------------------------");
+		int movimientoInicial = 1;
+		if(this.validarMovimientoInicialPeon(this.coordinate))
+		{
+			movimientoInicial = 0;
+		}
+		System.out.println("Para " + movimientoInicial);
+
+		for(int pasos = movimientoInicial; pasos < 2; pasos++, columnas++)
 		{
 			if(this.verificarMovimientoLimitesTablero(filas, columnas))
 			{
@@ -619,36 +670,48 @@ public class Movimientos
 				else
 				{
 					break;
+				}
+			}
+		}
+
+		filas = this.coordenadaX-1;
+		columnas = this.coordenadaY+1;
+		for(int pasos = 0; pasos < 2; pasos++, filas = filas+2)
+		{
+			if(this.verificarMovimientoLimitesTablero(filas, columnas))
+			{
+				Coordinate coordenada = new Coordinate(filas, columnas);
+				if(this.validarMovimientoConOponente(coordenada))
+				{
+					this.listaMovimientosFiltrados.add(coordenada);
 				}
 			}
 		}
 	}
 
-	//PEON NEGRO
-	public void movimientoPeonNegro()
+	public boolean validarMovimientoInicialPeon(Coordinate coordenadasXY)
 	{
-		int filas = this.coordenadaX + 1;
-		int columnas = this.coordenadaY;
-
-		//System.out.println("--------------------------");
-		for(int pasos = 0; pasos < 2; pasos++, filas++)
+		int movimientoY = 0;
+		if(pieza.getColor().equals(Color.BLACK))
 		{
-			if(this.verificarMovimientoLimitesTablero(filas, columnas))
+			movimientoY = 1;
+		}
+		else
+		{
+			movimientoY = 6;
+		}
+		
+		for(int i = 0; i < 8; i++)
+		{
+			Coordinate coordinate = new Coordinate(i, movimientoY);
+			if(coordenadasXY.equals(coordinate))
 			{
-				Coordinate coordenada = new Coordinate(filas, columnas);
-				if(this.validarMovimientos(coordenada))
-				{
-					if(this.validarMovimientos(coordenada) && this.agregarMovimientoSinDuplicarse(coordenada))
-					{
-						this.listaMovimientosFiltrados.add(coordenada);
-					}
-				}
-				else
-				{
-					break;
-				}
+				System.out.println("Es el movimiento inicial");
+				return true;
 			}
 		}
+
+		return false;
 	}
 
 	public String obtenerCoordenadas(int filas, int columnas)
@@ -753,9 +816,14 @@ public class Movimientos
 		
 		//System.out.println("Esta aQui EN = " + coordenadasXY);
 		//System.out.println(this.obtenerCoordenadas(filas, columnas));
-		if(flagOponente)
+		if(flagOponente == true)
 		{
-			this.listaMovimientosFiltrados.add(coordenadasXY);
+			System.out.println("NOMBRE PIEZA= " + this.nombrePieza + "x");
+			if(!this.nombrePieza.equals("Pawn"))
+			{
+				System.out.println("Entra aqui\n\n");
+				this.listaMovimientosFiltrados.add(coordenadasXY);
+			}
 			return false;
 		}
 		//		System.out.println("XXXXXXXXXXX");
