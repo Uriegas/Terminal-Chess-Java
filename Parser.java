@@ -22,13 +22,14 @@ public class Parser{
         this.ss = new String[3];
         this.move = null;
         this.rand = new Random();
-
-        //Flag
         this.quitFlag = false;
     }
 
+    //--------------
+    //Flags
+    //--------------
     public void getLegal(Board b){
-        b.listPlayerMoves();
+        System.out.println(b.listPlayerMoves());
     }
 
     public void getUndo(Board b){
@@ -44,8 +45,10 @@ public class Parser{
         return this.quitFlag;
     }
 
+    //--------------
+    //Parsing
+    //--------------
     private void formatString(){
-        //Remove white-spaces. Ex. 3 f - > 1 f == 3f->1f
         this.s = this.s.replaceAll("\\s", "");
     }
 
@@ -58,7 +61,6 @@ public class Parser{
     }
 
     private void seeOptions(){//Imprime menu de opciones
-        //Quiza esto deberia de ser un string para no imprimir dentro de la clase
         System.out.println("u : undo last move");
         System.out.println("l : show all legal moves");
         System.out.println("r : make a random move");
@@ -74,7 +76,7 @@ public class Parser{
     }
 
     //Parse from str 2 coordinate
-    //Recives a string of 2 chars
+    //Recieves a string of 2 chars
     private Coordinate ParseCoordinate(String s){
         int x, y;
             switch(s.charAt(0)){
@@ -119,7 +121,7 @@ public class Parser{
             this.move = null;
         }
         else if(s.equals("?")){
-            seeOptions();//See options
+            this.seeOptions();//See options
             this.move = null;
         }
         else if(s.equals("quit"))
