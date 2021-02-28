@@ -141,7 +141,7 @@ public class Board
 		for (int i = 0; i < pieces.size(); i++){
 			if(this.pieces.get(i).getColor() == getCurrentPlayer() && this.pieces.get(i).getFigure() == '♚'){
 				for(int j = 0; j < moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size(); j++){
-					if(this.pieces.get(i).getCoordinate() == moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).get(i)){
+					if(this.pieces.get(i).getCoordinate() == moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).get(i).getPieceInMove().getCoordinate()){
 						this.isCheckMate = true;
 					}else{
 						this.isCheckMate = false;
