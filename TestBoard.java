@@ -15,13 +15,24 @@ public class TestBoard
         //Reina
         //Coordinate coordinate = new Coordinate(3,7);
         //Caballito
+        System.out.println("\n\nPEIZA 1");
         Coordinate coordinate = new Coordinate(1,0);
-
         Piece pieza = myboard.obtenerPiezaCoordenadas(coordinate);
         Movimientos movimientos = new Movimientos();
         ArrayList<Move> listaMovimientosMove = new ArrayList<>(movimientos.obtenerMovimientos(pieza, myboard));
 
-        System.out.println("\n\n\n\n");
+        System.out.println("\n\n");
+        for(Move move : listaMovimientosMove)
+        {
+            System.out.println(move.toString()); // No jala por toString null
+        }
+
+        System.out.println("\n\nPEIZA 2");
+        coordinate = new Coordinate(0,6);
+        pieza = myboard.obtenerPiezaCoordenadas(coordinate);
+        listaMovimientosMove = new ArrayList<>(movimientos.obtenerMovimientos(pieza, myboard));
+
+        System.out.println("\n\n");
         for(Move move : listaMovimientosMove)
         {
             System.out.println(move.toString()); // No jala por toString null
