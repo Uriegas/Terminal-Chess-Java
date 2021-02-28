@@ -4,7 +4,7 @@ public class TestMakeMovement {
         System.out.println( myboard.drawBoard() );
 
         //Print all moves of current player
-        System.out.println( myboard.listPlayerMoves(myboard.getCurrentPlayer()) );
+        System.out.println( myboard.listPlayerMoves() );
 
         //Agarrar la pieza en coordenada 4,6 o sea el peon
         //Caballo 1, 7

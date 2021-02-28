@@ -28,6 +28,7 @@ public class Board
 		this.currentPlayer = Color.WHITE;
 		this.isStalemate = false;
 		this.moves = new Movimientos();
+		this.movementHistory = new Stack<>();
 
 		pieces = new ArrayList<Piece>();
 
@@ -149,7 +150,6 @@ public class Board
 		if(move == null)
 			return false;
 		else{
-			//this.movementHistory.push(move);
 			//Alternar entre jugadores cada que se haga un movimiento
 
 			//Obtener los posibles Movimientos de la Pieza en cuestion
@@ -162,6 +162,7 @@ public class Board
 					for(Piece pieza : pieces){//Buscar la pieza que hace el movimiento y moverla;
 						if( move.getPieceToMove().isEqual(pieza) ){
 							pieza.setPosition(move.getNewPos());//Aqui se realiza el movimiento
+							this.movementHistory.push(move);
 							this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 							return true;
 						}

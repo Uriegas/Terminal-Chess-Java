@@ -6,47 +6,38 @@
 //? to see options
 //Stores a object of type Move
 
+import java.util.*;
+
 public class Parser{
     //String to analyze
     private String s;
     //Substrings from s (Tokens)
     private String[] ss;
     private Move move;
-
+    private Random rand;
     private boolean quitFlag;
-    private boolean selectedOption; //Indica si el usuario no ingreso un movimiento, sino un 'comodin'
-
-    private boolean legalMoves;
-    private boolean undoMoves;
-    private boolean randomMove;
 
     public Parser(){
         //Initialize variables, except s, it is initialized in Parser function
         this.ss = new String[3];
         this.move = null;
+        this.rand = new Random();
 
-        //Flags
-        this.selectedOption = true; //Por defecto verdadero, para no andar mandando coordenadas invalidas
-        this.legalMoves = false;
-        this.undoMoves = false;
-        this.randomMove = false;
+        //Flag
         this.quitFlag = false;
     }
 
-    public boolean getSelectedOption(){
-        return this.selectedOption;
+    public void getLegal(Board b){
+        b.listPlayerMoves();
     }
 
-    public boolean getLegal(){
-        return this.legalMoves;
+    public void getUndo(Board b){
+        b.undoMovement();
     }
 
-    public boolean getUndo(){
-        return this.undoMoves;
-    }
-
-    public boolean getRandom(){
-        return this.randomMove;
+    public void getRandom(Board b){
+        ArrayList<Move> m = b.possibleMovesCurrentPlayer();
+        this.move = m.get( rand.nextInt(m.size()) );
     }
 
     public boolean getQuitFlag(){
@@ -117,26 +108,23 @@ public class Parser{
 
         this.formatString();//Replace white spaces
 
-        if( s.equals("?") || s.equals("l") || s.equals("r") || s.equals("u") || s.equals("quit")){
-            this.selectedOption = true;
+        if(s.equals("l")){
+            this.getLegal(b);
             this.move = null;
-            if(s.equals("l"))
-                this.legalMoves = true;
-            else if(s.equals("r"))
-                this.randomMove = true;
-            else if(s.equals("u"))
-                this.undoMoves = true;
-            else if(s.equals("?"))
-                seeOptions();//See options
-            else if(s.equals("quit"))
-                this.quitFlag = true;//Send a quit signal or something like that
         }
+        else if(s.equals("r"))
+            this.getRandom(b);
+        else if(s.equals("u")){
+            this.getUndo(b);
+            this.move = null;
+        }
+        else if(s.equals("?")){
+            seeOptions();//See options
+            this.move = null;
+        }
+        else if(s.equals("quit"))
+            this.quitFlag = true;//Send a quit signal or something like that
         else{
-            this.selectedOption = false; //No se seleccionó un 'comodín'
-            this.legalMoves = false;
-            this.undoMoves = false;
-            this.randomMove = false;
-
             //Parsear lo que ingreso
             this.Tokenizer(this.s);
             Coordinate origin = this.ParseCoordinate(this.ss[0]);

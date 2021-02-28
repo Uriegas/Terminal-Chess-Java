@@ -37,6 +37,8 @@ El parser debe retorna un objeto `Move`, en la clase [Chess.java](Chess.java) ha
 
 Arreglar bug en [Movimientos.java](Movimientos.java)  
 
+Undo Movements no funciona
+
 ## Chess Concepts  
 **Checkmate** is a game position in which a player's king is in check (threatened with capture) and there is no way to avoid the threat.  
 
