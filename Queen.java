@@ -27,6 +27,11 @@ public class Queen extends Piece{
         super.setFigure('♛');
     }
     
+    //Copy Constructor
+    public Queen(Queen q){
+        this(q.getColor(), q.getCoordinate());
+    }
+
     //Prueba Viernes
     public Queen(){
         super(Color.WHITE, new Coordinate(0,3));

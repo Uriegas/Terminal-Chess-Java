@@ -10,6 +10,11 @@ public class Pawn extends Piece{
         super('♟', "Pawn", color, position);
         this.initPossibleMoves();
     }
+    
+    //Copy Constructor
+    public Pawn(Pawn p){
+        this(p.getColor(), p.getCoordinate());
+    }
 
     private void initPossibleMoves(){
         if(super.getColor() == Color.WHITE){

@@ -20,7 +20,10 @@ public class Move {
     private Coordinate newPos;
     private Piece pieceToCapture;
 
-    Move(Piece piece, Coordinate destionation, Piece toCapture){
+    //Este codigo no crea nuevos objetos Piece, sino que copia la referencia a memoria
+    //Esto causó un bug al implementar el historial de movimientos, solución: no la se
+    //Hasta ahora solo se crea un nuevo objeto pieza para cambiar su posición.
+    Move(Piece p, Coordinate destionation, Piece toCapture){
         this.checkmate = false;
         this.kingsideCastle = false;
         this.queensideCastle = false;
@@ -30,7 +33,7 @@ public class Move {
         this.specialMovePiece = false;
         this.rookMove = false;
         
-        this.piece = piece;
+        this.piece = p;
         this.oldPos = this.piece.getCoordinate();
         this.newPos = destionation;
         this.pieceToCapture = toCapture;

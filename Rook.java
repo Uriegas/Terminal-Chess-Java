@@ -24,6 +24,11 @@ public class Rook extends Piece{
         super.setFigure('♜');
     }
     
+    //Copy Constructor
+    public Rook(Rook r){
+        this(r.getColor(), r.getCoordinate());
+    }
+
     //Prueba Viernes  ¿? XD, le puse donde debería estar 1 vdd
     public Rook(){
         super(Color.WHITE, new Coordinate(0,0));

@@ -226,7 +226,7 @@ public class Board
 				if( m.isEqual(move) ){//Buscar el move que se quiere hacer en la lista de los posibles moves
 					for(Piece pieza : pieces){//Buscar la pieza que hace el movimiento y moverla;
 						if( move.getPieceToMove().isEqual(pieza) ){
-							pieza.setPosition(m.getNewPos());//Aqui se realiza el movimiento
+							pieza.setPosition(move.getNewPos());//Aqui se realiza el movimiento
 							this.movementHistory.push(move);
 							this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 

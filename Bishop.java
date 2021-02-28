@@ -17,6 +17,12 @@ public class Bishop extends Piece{
         super('♝', "Bishop", color, position);
         this.initPossibleMoves();
     }
+
+    //Copy Constructor
+    public Bishop(Bishop b){
+        this(b.getColor(), b.getCoordinate());
+    }
+
     public char getFigure(){
         return super.getFigure();
     }

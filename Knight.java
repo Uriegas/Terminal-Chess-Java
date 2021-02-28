@@ -22,6 +22,12 @@ public class Knight extends Piece{
         super('♞', "Night", color, position);
         this.initPossibleMoves();
     }
+
+    //Copy Constructor
+    public Knight(Knight k){
+        this(k.getColor(), k.getCoordinate());
+    }
+
     public char getFigure(){
         return super.getFigure();
     }

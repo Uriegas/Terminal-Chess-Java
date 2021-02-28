@@ -10,19 +10,16 @@ DISPLAY_LOOKUP = {
 }
 */
 enum Color{WHITE, BLACK};
-enum Alive{LIVE, DEAD};
 
 public abstract class Piece extends Coordinate{
     private char figure; //Ver DISPLAY_LOOKUP
     private String piece_type;//Reina, caballito, peon ...
     private Coordinate position;
     private Color color;
-    private Alive alive;
 
     //Lo deje por compatibilidad con las demas piezas
     public Piece(Color color, Coordinate position){
         this.color = color;
-        this.alive = Alive.LIVE;
         this.position = position;
     }
 
@@ -31,8 +28,18 @@ public abstract class Piece extends Coordinate{
         this.figure = figure;
         this.piece_type = piece;
         this.color = color;
-        this.alive = Alive.LIVE;
         this.position = position;
+    }
+
+    //Copy Constructor
+    public Piece(Piece p){
+        this(p.figure, p.piece_type, p.color, new Coordinate(p.position));
+        /*
+        this.figure = p.figure;
+        this.piece_type = p.piece_type;
+        this.position = new Coordinate(p.position.getX(), p.position.getY());
+        this.color = p.color;
+        */
     }
 
     public void setPosition(Coordinate other){
@@ -46,10 +53,6 @@ public abstract class Piece extends Coordinate{
     //Añado el get color para cuestiones de implementación de color de figuras en posiciones (Creo que se usará)
     public Color getColor(){
         return this.color;
-    }
-
-    public Alive isAlive(){
-        return this.alive;
     }
 
     public void setFigure(char f){
@@ -74,7 +77,6 @@ public abstract class Piece extends Coordinate{
         return  "Name: " + this.getPiece_Type() + '\n' + 
                 "Figure: " + String.valueOf(this.getFigure()) + '\n' + 
                 "Color: " + (this.color == Color.WHITE ? "WHITE" : "BLACK") + '\n' +
-                "Live: " + (this.alive == Alive.LIVE ? "LIVE" : "DEAD") + '\n' +
                 "Position: " + this.position.toString() + '\n';
     }
     public void setFigureToFigure(){}
