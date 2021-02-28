@@ -5,6 +5,7 @@ public class Chess {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         Parser parser = new Parser();
+        Move m = null;
         String input;
         Board board = new Board(8,8);
 
@@ -13,15 +14,21 @@ public class Chess {
         System.out.println("¡¡Whites move first!!\n");
 
         while(!board.isCheckMate() && !parser.getQuitFlag() && !board.isStalemate() ){//While there is no checkmate, stalemate or a quit
-            System.out.println(board.drawBoard() + '\n');
-            if(board.getCurrentPlayer() == Color.WHITE)
+            System.out.println(board.drawBoard() + '\n');//Dibujar el tablero
+            if(board.getCurrentPlayer() == Color.WHITE)//Alternar entre jugador WHITE y BLACK
                 System.out.print("Blues");
             else
                 System.out.print("Reds");
             System.out.print(" move. (Type '?' to see options.) > ");
 
+            //Parsear la entrada de teclado
             input = in.nextLine();
-            parser.Parse(input, board);
+            m = parser.Parse(input, board);
+            if( m != null ){//Si no se parseo nada, entonces es un movimiento invalido
+                System.out.println(m.toChessNotation());
+                System.out.println(m.toString());
+                board.makeMovement(m);
+            }
         }
 
         //Solo existen 3 posibles resultados del juego

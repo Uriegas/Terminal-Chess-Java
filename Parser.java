@@ -147,6 +147,7 @@ public class Parser{
             else
                 move = new Move(current, destination);
         }
+        this.s = "";
         return this.move;
     }
 }
