@@ -35,10 +35,10 @@ public class Movimientos
 		this.board = board;
 		
 		this.nombrePieza = pieza.getPiece_Type();
-		System.out.println(nombrePieza+"X");
+		/*System.out.println(nombrePieza+"X");
 		System.out.println(coordenadaX);
 		System.out.println(coordenadaY);
-		System.out.println(pieza.getColor());
+		System.out.println(pieza.getColor());*/
 
 		if(pieza.getColor().equals(Color.BLACK))
 		{
@@ -92,12 +92,12 @@ public class Movimientos
 				//Algún If Color 
 				if(pieza.getColor().equals(Color.BLACK))
 				{
-					System.out.println("Peon Color Negro");
+					//System.out.println("Peon Color Negro");
 					this.movimientoPeonNegro();
 				}
 				else
 				{
-					System.out.println("Peon Color Blanco");
+					//System.out.println("Peon Color Blanco");
 					this.movimientoPeonBlanco();
 				}
 				break;
@@ -604,7 +604,7 @@ public class Movimientos
 		{
 			movimientoInicial = 0;
 		}
-		System.out.println("Para " + movimientoInicial);
+		//System.out.println("Para " + movimientoInicial);
 		for(int pasos = movimientoInicial; pasos < 2; pasos++, columnas--)
 		{
 			if(this.verificarMovimientoLimitesTablero(filas, columnas))
@@ -655,7 +655,7 @@ public class Movimientos
 		{
 			movimientoInicial = 0;
 		}
-		System.out.println("Para " + movimientoInicial);
+		//System.out.println("Para " + movimientoInicial);
 
 		for(int pasos = movimientoInicial; pasos < 2; pasos++, columnas++)
 		{
@@ -708,7 +708,7 @@ public class Movimientos
 			Coordinate coordinate = new Coordinate(i, movimientoY);
 			if(coordenadasXY.equals(coordinate))
 			{
-				System.out.println("Es el movimiento inicial");
+				//System.out.println("Es el movimiento inicial");
 				return true;
 			}
 		}
@@ -820,10 +820,10 @@ public class Movimientos
 		//System.out.println(this.obtenerCoordenadas(filas, columnas));
 		if(flagOponente == true)
 		{
-			System.out.println("NOMBRE PIEZA= " + this.nombrePieza + "x");
+			//System.out.println("NOMBRE PIEZA= " + this.nombrePieza + "x");
 			if(!this.nombrePieza.equals("Pawn"))
 			{
-				System.out.println("Entra aqui\n\n");
+				//System.out.println("Entra aqui\n\n");
 				this.listaMovimientosFiltrados.add(coordenadasXY);
 			}
 			return false;
@@ -836,7 +836,7 @@ public class Movimientos
 	public void mostrarMovimientosFiltrados()
 	{
 		//this.eliminarDuplicadosLista();
-		System.out.println("-------------------MOVIMIENTOS POSIBLES");
+		//System.out.println("-------------------MOVIMIENTOS POSIBLES");
 		for(int i = 0; i < this.listaMovimientosFiltrados.size(); i++)
 		{
 			System.out.println(this.listaMovimientosFiltrados.get(i));
@@ -878,7 +878,7 @@ public class Movimientos
 			{
 				/*System.out.println(this.pieza.toString());
 				System.out.println(coordenadas.toString());*/
-				this.listaMovimientosMove.add(new Move(this.pieza, coordenadas));
+				this.listaMovimientosMove.add(new Move(this.pieza, coordenadas, null));
 			}
 		
 		}
