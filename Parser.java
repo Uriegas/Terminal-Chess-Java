@@ -127,6 +127,13 @@ public class Parser{
         else if(s.equals("quit"))
             this.quitFlag = true;//Send a quit signal or something like that
         else{
+            //Verificar la longitud del string
+            if(this.s.length() != 6){
+                System.out.println("Invalid Value");
+                this.move = null;
+                return null;
+            }
+
             //Parsear lo que ingreso
             this.Tokenizer(this.s);
             Coordinate origin = this.ParseCoordinate(this.ss[0]);
@@ -134,6 +141,7 @@ public class Parser{
 
             //Si ingreso algo invalido haz el movimiento nulo
             if( origin.isInvalid() || destination.isInvalid() || !isValidMovement() ){
+                System.out.println("Invalid Value");
                 this.move = null;
                 return null;
             }
