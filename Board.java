@@ -269,6 +269,7 @@ public class Board
 	public List<Coordinate> obtenerPiezasPorColor(Color color)
 	{
 		List<Coordinate> listaPiezasCoordenadas = new ArrayList<>();
+		listaPiezasCoordenadas.clear();
 		for(Piece piece : pieces)
 		{
 			if(piece.getColor().equals(color))

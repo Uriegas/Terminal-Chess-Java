@@ -26,6 +26,8 @@ public class Movimientos
 	{
 		this.listaMovimientosFiltrados.clear();
 		this.listaMovimientosMove.clear();
+		this.listaMovimientosOponente.clear();
+		this.listaMovimientosJugadors.clear();
 		this.pieza = pieza;
 		this.coordinate = pieza.getCoordinate();
 		this.coordenadaX = this.coordinate.getX();
