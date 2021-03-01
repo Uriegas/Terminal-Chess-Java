@@ -32,4 +32,17 @@ public class Pawn extends Piece{
     public void setFigureToFigure(){
         super.setFigure('♟');
     }
+
+    public ArrayList<Move> getMoves(Board b){
+        ArrayList<Coordinate> mvm = new ArrayList<Coordinate>();
+        mvm.add(new Coordinate(0, -2));
+        mvm.add(new Coordinate(0, -1));
+
+        ArrayList<Move> m = new ArrayList<Move>();
+        for(Coordinate direction : mvm ){
+            if(super.getNextMove(direction, b) != null);
+                m.add(super.getNextMove(direction, b));
+        }
+        return m;
+    }
 }

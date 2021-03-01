@@ -33,11 +33,6 @@ public class Coordinate {
         this.y = y;
     }
 
-    public void add(Coordinate other){
-        this.x += other.getX();
-        this.y += other.getY();
-    }
-
     public String toString(){
         return "(" + this.getX() + ", " + this.getY() + ")";
     }
@@ -80,5 +75,13 @@ public class Coordinate {
 
     public boolean isInvalid(){
         return ( this.x == -1 || this.y == -1 ) ? true : false;
+    }
+
+    public boolean isInsideBoard(){
+        return ( 0 < this.getX() && this.getX() < 7 && 0 < this.getY() && this.getY() < 7 ) ? true : false;
+    }
+    
+    public Coordinate add(Coordinate c){
+        return new Coordinate( (this.getX() + c.getX()), (this.getY() + c.getY()) );
     }
 }

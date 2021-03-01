@@ -41,5 +41,22 @@ public class Knight extends Piece{
     public String getName(){
         return "Knight";
     }
+    public ArrayList<Move> getMoves(Board b){
+        ArrayList<Coordinate> mvm = new ArrayList<Coordinate>();
+        mvm.add(new Coordinate(2, 1));
+        mvm.add(new Coordinate(2, -1));
+        mvm.add(new Coordinate(-2, 1));
+        mvm.add(new Coordinate(-2, -1));
+        mvm.add(new Coordinate(1, 2));
+        mvm.add(new Coordinate(1, -2));
+        mvm.add(new Coordinate(-1, -2));
+        mvm.add(new Coordinate(-1, 2));
 
+        ArrayList<Move> m = new ArrayList<Move>();
+        for(Coordinate direction : mvm ){
+            if(super.getNextMove(direction, b) != null);
+                m.add(super.getNextMove(direction, b));
+        }
+        return m;
+    }
 }

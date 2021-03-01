@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /*
 DISPLAY_LOOKUP = {
     "R": '♜',
@@ -74,5 +76,44 @@ public abstract class Piece extends Coordinate{
             return true;
         else
             return false;
+    }
+
+    public ArrayList<Move> getMoves(ArrayList<Coordinate> directions, Board b){
+        ArrayList<Move> m = new ArrayList<Move>();
+
+        for(Coordinate direction : directions )
+            m.addAll(this.moveInDirectionFromPos(direction, b));
+        return m;
+    }
+
+    public ArrayList<Move> moveInDirectionFromPos(Coordinate direction, Board b){
+        ArrayList<Move> m = new ArrayList<Move>();
+        Coordinate newPos = this.position;
+        Piece attacked = null;
+
+        while(newPos.isInsideBoard()){
+            newPos = newPos.add(direction);
+            attacked = b.obtenerPiezaCoordenadas(newPos);
+            if(attacked == null)
+                m.add(new Move(this, newPos, null));
+            else
+                if(attacked.getColor() != this.getColor())
+                    m.add(new Move(this, newPos, attacked));
+        }
+        return m;
+    }
+
+    public Move getNextMove(Coordinate direction, Board b){
+        Coordinate newPos = this.position;
+        Piece attacked = null;
+        newPos = newPos.add(direction);
+        attacked = b.obtenerPiezaCoordenadas(newPos);
+        if(attacked == null)
+            return new Move(this, newPos, null);
+        else
+            if(attacked.getColor() != this.getColor())
+                return new Move(this, newPos, attacked);
+            else
+                return null;
     }
 }

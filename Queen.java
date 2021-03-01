@@ -1,21 +1,9 @@
 import java.util.*;
 
 public class Queen extends Piece{
-    private List<Coordinate> mvm = new ArrayList<Coordinate>();
-    private void initPossibleMoves(){
-        this.mvm.add(new Coordinate(0, 1));
-        this.mvm.add(new Coordinate(0, -1));
-        this.mvm.add(new Coordinate(1, 0));
-        this.mvm.add(new Coordinate(-1, 0));
-        this.mvm.add(new Coordinate(1, 1));
-        this.mvm.add(new Coordinate(1, -1));
-        this.mvm.add(new Coordinate(-1, 1));
-        this.mvm.add(new Coordinate(-1, -1));
-    }
 
     public Queen(Color color, Coordinate position){
         super('♛', "Queen", color, position);
-        this.initPossibleMoves();
     }
     
     public char getFigure(){
@@ -34,5 +22,21 @@ public class Queen extends Piece{
     @Override
     public Queen deepCopy(){
         return new Queen(this);
+    }
+
+    public ArrayList<Move> getMoves(Board b){
+        ArrayList<Coordinate> mvm = new ArrayList<Coordinate>();
+        mvm.add(new Coordinate(0, 1));
+        mvm.add(new Coordinate(0, -1));
+        mvm.add(new Coordinate(1, 0));
+        mvm.add(new Coordinate(-1, 0));
+        mvm.add(new Coordinate(1, 1));
+        mvm.add(new Coordinate(1, -1));
+        mvm.add(new Coordinate(-1, 1));
+        mvm.add(new Coordinate(-1, -1));
+
+        ArrayList<Move> m = new ArrayList<Move>();
+        m.addAll(super.getMoves(mvm, b));
+        return m;
     }
 }

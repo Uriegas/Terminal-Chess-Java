@@ -1,18 +1,9 @@
 import java.util.*;
 
 public class Rook extends Piece{
-    private List<Coordinate> mvm = new ArrayList<Coordinate>();
-    
-    private void initPossibleMoves(){
-        this.mvm.add(new Coordinate(1, 0));
-        this.mvm.add(new Coordinate(-1, 0));
-        this.mvm.add(new Coordinate(0, 1));
-        this.mvm.add(new Coordinate(0, -1));
-    }
 
     public Rook(Color color, Coordinate position){
         super('♜', "Rook", color, position);
-        this.initPossibleMoves();
     }
 
     public char getFigure(){
@@ -35,5 +26,17 @@ public class Rook extends Piece{
 
     public String getName(){
         return "Rook";
+    }
+
+    public ArrayList<Move> getMoves(Board b){
+        ArrayList<Coordinate> mvm = new ArrayList<Coordinate>();
+        mvm.add(new Coordinate(1, 0));
+        mvm.add(new Coordinate(-1, 0));
+        mvm.add(new Coordinate(0, 1));
+        mvm.add(new Coordinate(0, -1));
+
+        ArrayList<Move> m = new ArrayList<Move>();
+        m.addAll(super.getMoves(mvm, b));
+        return m;
     }
 }
