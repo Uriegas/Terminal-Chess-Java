@@ -96,7 +96,10 @@ public abstract class Piece extends Coordinate{
         do{
             newPos = newPos.add(direction);
             if(newPos.isInsideBoard()){
-                attacked = b.obtenerPiezaCoordenadas(newPos);
+                if(b.obtenerPiezaCoordenadas(newPos) != null)
+                    attacked = b.obtenerPiezaCoordenadas(newPos).deepCopy();
+                else
+                    attacked = null;
                 if(attacked == null)
                     m.add(new Move(this, newPos, null));
                 else
@@ -115,7 +118,10 @@ public abstract class Piece extends Coordinate{
 
         newPos = newPos.add(direction);
         if(newPos.isInsideBoard()){
-            attacked = b.obtenerPiezaCoordenadas(newPos);
+            if(b.obtenerPiezaCoordenadas(newPos) != null)
+                attacked = b.obtenerPiezaCoordenadas(newPos).deepCopy();
+            else
+                attacked = null;
             if(attacked == null)
                 return new Move(this, newPos, null);
             else

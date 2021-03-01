@@ -145,13 +145,15 @@ public class Parser{
             }
 
             //Si es valido crea el objeto move
-            Piece current = b.obtenerPiezaCoordenadas(origin);
-            Piece capture = b.obtenerPiezaCoordenadas(destination);
-
-            if( capture == null )
+            Piece current = b.obtenerPiezaCoordenadas(origin).deepCopy();
+            Piece capture = null;
+            if(b.obtenerPiezaCoordenadas(destination) != null){
+                capture = b.obtenerPiezaCoordenadas(destination).deepCopy();
                 move = new Move(current, destination, capture);
-            else
-                move = new Move(current, destination);
+            }
+            else{
+                move = new Move(current, destination, null);
+            }
         }
         this.s = "";
         return this.move;

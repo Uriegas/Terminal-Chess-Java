@@ -152,9 +152,10 @@ public class Board{
 							this.currentPlayer = (this.currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
 
 							if(move.getPieceToCapture() != null){//Si hay pieza para comer, entonces cometela
-								for(Piece p : pieces){//Buscar la pieza a comer
-									if(move.getPieceToCapture().isEqual(p)){
-										pieces.remove(p);
+								for(int i = 0; i < pieces.size(); i++){//Buscar la pieza a comer
+									if(move.getPieceToCapture().isEqual(pieces.get(i))){
+										//pieces.remove(p);
+										pieces.remove(i);
 										break;
 									}
 								}
