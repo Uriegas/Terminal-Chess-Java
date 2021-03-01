@@ -53,7 +53,7 @@ public class King extends Piece{
 
         ArrayList<Move> m = new ArrayList<Move>();
         for(Coordinate direction : mvm ){
-            if(super.getNextMove(direction, b) != null);
+            if(super.getNextMove(direction, b) != null)
                 m.add(super.getNextMove(direction, b));
         }
         return m;

@@ -36,7 +36,7 @@ public class Queen extends Piece{
         mvm.add(new Coordinate(-1, -1));
 
         ArrayList<Move> m = new ArrayList<Move>();
-        m.addAll(super.getMoves(mvm, b));
+        m.addAll(super.getMovesFromDirections(mvm, b));
         return m;
     }
 }

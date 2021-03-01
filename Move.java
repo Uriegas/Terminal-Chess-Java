@@ -105,8 +105,4 @@ public class Move {
     public String toChessNotation(){
         return this.oldPos.toChessNotation() + " -> " + this.newPos.toChessNotation();
     }
-
-    public Piece getPieceInMove(){
-        return this.piece;
-    }
 }

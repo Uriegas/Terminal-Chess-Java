@@ -78,11 +78,14 @@ public abstract class Piece extends Coordinate{
             return false;
     }
 
-    public ArrayList<Move> getMoves(ArrayList<Coordinate> directions, Board b){
+    public abstract ArrayList<Move> getMoves(Board b);
+
+    public ArrayList<Move> getMovesFromDirections(ArrayList<Coordinate> directions, Board b){
         ArrayList<Move> m = new ArrayList<Move>();
 
         for(Coordinate direction : directions )
-            m.addAll(this.moveInDirectionFromPos(direction, b));
+            if( !(this.moveInDirectionFromPos(direction, b).isEmpty()) )
+                m.addAll(this.moveInDirectionFromPos(direction, b));
         return m;
     }
 
@@ -90,30 +93,37 @@ public abstract class Piece extends Coordinate{
         ArrayList<Move> m = new ArrayList<Move>();
         Coordinate newPos = this.position;
         Piece attacked = null;
-
-        while(newPos.isInsideBoard()){
+        do{
             newPos = newPos.add(direction);
-            attacked = b.obtenerPiezaCoordenadas(newPos);
-            if(attacked == null)
-                m.add(new Move(this, newPos, null));
-            else
-                if(attacked.getColor() != this.getColor())
-                    m.add(new Move(this, newPos, attacked));
-        }
+            if(newPos.isInsideBoard()){
+                attacked = b.obtenerPiezaCoordenadas(newPos);
+                if(attacked == null)
+                    m.add(new Move(this, newPos, null));
+                else
+                    if(attacked.getColor() != this.getColor())
+                        m.add(new Move(this, newPos, attacked));
+                    else
+                        break;
+            }
+        }while(newPos.isInsideBoard());
         return m;
     }
 
     public Move getNextMove(Coordinate direction, Board b){
         Coordinate newPos = this.position;
         Piece attacked = null;
+
         newPos = newPos.add(direction);
-        attacked = b.obtenerPiezaCoordenadas(newPos);
-        if(attacked == null)
-            return new Move(this, newPos, null);
-        else
-            if(attacked.getColor() != this.getColor())
-                return new Move(this, newPos, attacked);
+        if(newPos.isInsideBoard()){
+            attacked = b.obtenerPiezaCoordenadas(newPos);
+            if(attacked == null)
+                return new Move(this, newPos, null);
             else
-                return null;
+                if(attacked.getColor() != this.getColor())
+                    return new Move(this, newPos, attacked);
+                else
+                    return null;
+        }
+        return null;
     }
 }

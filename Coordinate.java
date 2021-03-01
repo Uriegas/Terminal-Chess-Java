@@ -78,7 +78,7 @@ public class Coordinate {
     }
 
     public boolean isInsideBoard(){
-        return ( 0 < this.getX() && this.getX() < 7 && 0 < this.getY() && this.getY() < 7 ) ? true : false;
+        return ( 0 <= this.getX() && this.getX() <= 7 && 0 <= this.getY() && this.getY() <= 7 ) ? true : false;
     }
     
     public Coordinate add(Coordinate c){

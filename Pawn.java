@@ -35,12 +35,18 @@ public class Pawn extends Piece{
 
     public ArrayList<Move> getMoves(Board b){
         ArrayList<Coordinate> mvm = new ArrayList<Coordinate>();
-        mvm.add(new Coordinate(0, -2));
-        mvm.add(new Coordinate(0, -1));
+        if(this.getColor() == Color.WHITE){
+            mvm.add(new Coordinate(0, -2));
+            mvm.add(new Coordinate(0, -1));
+        }
+        else{
+            mvm.add(new Coordinate(0, 2));
+            mvm.add(new Coordinate(0, 1));
+        }
 
         ArrayList<Move> m = new ArrayList<Move>();
         for(Coordinate direction : mvm ){
-            if(super.getNextMove(direction, b) != null);
+            if(super.getNextMove(direction, b) != null)
                 m.add(super.getNextMove(direction, b));
         }
         return m;
