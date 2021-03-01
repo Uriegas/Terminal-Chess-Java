@@ -258,7 +258,7 @@ public class Board
 		Move undoMove = this.movementHistory.pop();
 		Piece pieceToUndo = null;
 
-		pieceToUndo = undoMove.getPieceToMove();//Get the piece to undo
+		pieceToUndo = undoMove.getPieceToMove().deepCopy();//Get the piece to undo
 		pieceToUndo.setPosition(undoMove.getNewPos());//Set the current position of the piece in board
 		//
 		for( int i = 0; i < pieces.size(); i++){
