@@ -5,7 +5,6 @@ public class Board{
 	private ArrayList<Piece> pieces; //Array de piezas
 	private String boardDrawed;//El tablero dibujado
 	private Color currentPlayer; //Cambiarla cada que se agrega un movimiento
-	private Movimientos moves;
 
 	//------------------
 	//Flags
@@ -18,7 +17,6 @@ public class Board{
 		this.isCheckMate = false;
 		this.currentPlayer = Color.WHITE;
 		this.isStalemate = false;
-		this.moves = new Movimientos();
 		this.movementHistory = new Stack<>();
 
 		this.pieces = new ArrayList<Piece>();
@@ -100,12 +98,11 @@ public class Board{
 		//Implementar una funcion que cheque si el rey tiene posibles movimiento
 		this.isCheckMate = false;
 		if(!movementHistory.empty()){
-			List <Move> auxiliarLista = moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this);
-			int tamanio = (int) moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size();
+			List <Move> auxiliarLista = movementHistory.peek().getPieceToMove().getMoves(this);
 			for (int i = 0; i < pieces.size(); i++){
 				if(this.pieces.get(i).getColor() == getCurrentPlayer() && this.pieces.get(i).getFigure() == '♚'){
-					for(int j = 0; j < tamanio; j++){
-						if (this.pieces.get(i).getCoordinate() == (auxiliarLista.get(j).getPieceInMove().getCoordinate())){
+					for(Move m : auxiliarLista ){
+						if (this.pieces.get(i).getCoordinate() == (m.getPieceToMove().getCoordinate())){
 							this.isCheckMate = true;
 						}
 					}
@@ -120,13 +117,13 @@ public class Board{
 		//Si el rey no tiene movimientos validos pero no esta siendo atacado
 		for (int i = 0; i < pieces.size(); i++){
 			if(this.pieces.get(i).getColor() == Color.WHITE && this.pieces.get(i).getFigure() == '♚'){
-				if(moves.obtenerMovimientos(pieces.get(i), this) == null){
+				if(pieces.get(i).getMoves(this) == null){
 					this.isCheckMate = true;
 				}else{
 					this.isCheckMate = false;
 				}
 			}else if (this.pieces.get(i).getColor() == Color.BLACK && this.pieces.get(i).getFigure() == '♚'){
-				if(moves.obtenerMovimientos(pieces.get(i), this) == null){
+				if(pieces.get(i).getMoves(this) == null){
 					this.isCheckMate = true;
 				}else{
 					this.isCheckMate = false;
@@ -142,8 +139,9 @@ public class Board{
 			return false;
 		else{
 			//Obtener los posibles Movimientos de la Pieza en cuestion
-			ArrayList<Move> possibleMoves = new ArrayList<>( moves.obtenerMovimientos(move.getPieceToMove(), this.get()) );
+			ArrayList<Move> possibleMoves = new ArrayList<>( move.getPieceToMove().getMoves(this) );
 
+			
 			//Validar que sea un movimiento valido
 			for(Move m : possibleMoves ){
 				if( m.isEqual(move) ){//Buscar el move que se quiere hacer en la lista de los posibles moves
@@ -186,7 +184,7 @@ public class Board{
 		//
 		for( int i = 0; i < pieces.size(); i++){
 			if( pieceToUndo.isEqual(pieces.get(i)) ){
-				pieces.get(i).setPosition(undoMove.getPieceInMove().getCoordinate());
+				pieces.get(i).setPosition(undoMove.getPieceToMove().getCoordinate());
 				break;
 			}
 		}
@@ -219,11 +217,6 @@ public class Board{
 		return null;
 	}
 
-	//Method that returns current class instance 
-    private Board get(){ 
-        return this; 
-    }
-
 	public String listPlayerMoves(){
 		String s = new String();
 		ArrayList<Move> possibleMoves = new ArrayList<>(possibleMovesCurrentPlayer());
@@ -237,8 +230,8 @@ public class Board{
 		//Add all possible moves of all pieces
 		for( Piece piece : pieces )
 			if(piece.getColor() == this.currentPlayer)//If the piece's color is of the current color, then add the movements of that piece
-				if( ! moves.obtenerMovimientos(piece, this.get()).isEmpty() )
-					possibleMoves.addAll( moves.obtenerMovimientos(piece, this.get()) );
+				if( ! piece.getMoves(this).isEmpty() )
+					possibleMoves.addAll(piece.getMoves(this));
 		return possibleMoves;
 
 	}
