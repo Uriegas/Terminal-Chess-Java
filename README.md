@@ -8,6 +8,8 @@ Terminal Chess Java
 
 Agregar sobre la solución de [Deep Copying](https://stackoverflow.com/questions/61875004/deep-copy-of-abstract-object) implementada en las piezas.
 
+[Otra referencia](https://stackoverflow.com/questions/20844660/copy-constructor-for-abstract-class)
+
 ## Chess Concepts  
 **Checkmate** is a game position in which a player's king is in check (threatened with capture) and there is no way to avoid the threat.  
 
