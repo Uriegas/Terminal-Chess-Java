@@ -36,12 +36,6 @@ public class Bishop extends Piece implements Cloneable{
         super.setFigure('♝');
     }
     
-    //Prueba Viernes  ¿? XD, le puse donde debería estar 1 vdd
-    public Bishop(){
-        super(Color.WHITE, new Coordinate(2,0));
-    }
-    //
-
     //Esto se haría implementando lo de isaac
     //@Override
     public String getName(){

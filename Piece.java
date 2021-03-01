@@ -17,12 +17,6 @@ public abstract class Piece extends Coordinate{
     private Coordinate position;
     private Color color;
 
-    //Lo deje por compatibilidad con las demas piezas
-    public Piece(Color color, Coordinate position){
-        this.color = color;
-        this.position = position;
-    }
-
     //Clase mas abstracta, maneja la figura y el nombre de la pieza
     public Piece(char figure, String piece, Color color, Coordinate position){
         this.figure = figure;
