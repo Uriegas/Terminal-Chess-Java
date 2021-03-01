@@ -6,40 +6,7 @@ Terminal Chess Java
 [Overleaf - Ver](https://www.overleaf.com/read/jwprchbnfsbw)  
 [Overleaf - Editar](https://www.overleaf.com/9577246851cdscmhvgdnwm)  
 
-## TODO
-Isaac (Para hoy)
-```java
-ArrayList<Move> obtenerMovimientos(Piece, Board)
-```
-Uriegas(Sabado)
-```java
-void makemovements(Move)
-```
-Roberto(Sabado)
-```java
-void isCheckMate()
-void undoMovement()
-```
-Despues implementar todo ello en clase Chess.  
-E ir añadiendo las validaciones en Movimientos para la clase Move.
-
-Cambiar el nombre de la función
-```java 
-public boolean equals(Coordinate c)
-```
-en [Coordinate.java](Coordinate.java), ya que asi también se llama la función para comparar objetos (localización en memoria del objeto)
-
-```java 
-public boolean equals(Obj o)
-```
-
-El parser debe retorna un objeto `Move`, en la clase [Chess.java](Chess.java) hacer la validación de las flags que estan dentro del Parser, pero en `Board.makeMovements()` hacer la validación de si el movimiento tiene piezas nulas.  
-
-Arreglar bug en [Movimientos.java](Movimientos.java)  
-
-Undo Movements no funciona
-
-No puedo hacer el undo porque en el makeMovement hay un bug, no se porque cada que hago un push al stack de Moves, me cambia los datos del movimiento que agrego.
+Agregar sobre la solución de [Deep Copying](https://stackoverflow.com/questions/61875004/deep-copy-of-abstract-object) implementada en las piezas.
 
 ## Chess Concepts  
 **Checkmate** is a game position in which a player's king is in check (threatened with capture) and there is no way to avoid the threat.  
