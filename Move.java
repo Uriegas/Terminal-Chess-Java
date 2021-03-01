@@ -36,7 +36,10 @@ public class Move {
         this.piece = p.deepCopy();
         this.oldPos = this.piece.getCoordinate();
         this.newPos = destionation;
-        this.pieceToCapture = toCapture.deepCopy();
+        if(toCapture != null)
+            this.pieceToCapture = toCapture.deepCopy();
+        else
+            this.pieceToCapture = null;
     }
     
     Move(Piece piece, Coordinate destionation){
