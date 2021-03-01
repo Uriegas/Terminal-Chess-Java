@@ -53,7 +53,6 @@ public class Parser{
     }
 
     //Separate into strings of tokens 
-    //Doesnt return value because it is treated inside the class
     private void Tokenizer(String s){
         this.ss[0] = s.substring(0, 2);
         this.ss[1] = s.substring(2, 4);
@@ -68,7 +67,6 @@ public class Parser{
     }
 
     private boolean isValidMovement(){
-        //Checa si esta el -> en lo que ingresó el usuario, tambien la longitud del string (siempre debe ser la misma)
         if( s.length() == 6)//Ej. 4f->12 (Todo movimiento tiene 6 caracteres)
             if( s.charAt(2) == '-' && s.charAt(3) == '>')//Checa el -> en el movimiento
                 return true;

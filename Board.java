@@ -1,13 +1,7 @@
 import java.util.*;
 
-public class Board
-{
-
-	private int filas;//8
-	private int columnas;//8
-	private String[][] board;//El tablero chicas, no se que haga Isaac
-
-	private Stack<Move> movementHistory; //El historial chicas
+public class Board{
+	private Stack<Move> movementHistory; //El historial de movimientos
 	private ArrayList<Piece> pieces; //Array de piezas
 	private String boardDrawed;//El tablero dibujado
 	private Color currentPlayer; //Cambiarla cada que se agrega un movimiento
@@ -19,11 +13,8 @@ public class Board
 	private boolean isCheckMate;
 	private boolean isStalemate;
 
-	public Board(int filas, int columnas)
+	public Board()
 	{
-		this.board = new String [filas][columnas];
-		this.filas = filas;
-		this.columnas = columnas;
 		this.isCheckMate = false;
 		this.currentPlayer = Color.WHITE;
 		this.isStalemate = false;
@@ -32,7 +23,7 @@ public class Board
 
 		this.pieces = new ArrayList<Piece>();
 
-		//Inicializar piezas, PD. se ve horribe pero jala
+		//Inicializar piezas
 		//Inicializar peones
 		for(int i = 0; i < 8; i++){//Miren la i de abajito para las coordenadas
 			pieces.add(new Pawn(Color.BLACK, new Coordinate(i,1))); //♟
@@ -57,26 +48,6 @@ public class Board
 		pieces.add(new Knight(Color.WHITE, new Coordinate(6,7)));	//♞
 		pieces.add(new Rook(Color.WHITE, new Coordinate(7,7)));		//♜
 		//
-	}
-
-	public int getFilas()
-	{
-		return this.filas;
-	}
-
-	public int getColumnas()
-	{
-		return this.columnas;
-	}
-
-	public void setPiece(String piece, int filas, int columnas)
-	{
-		this.board[filas][columnas] = piece;
-	}
-
-	public String getPosition(int filas, int columnas)
-	{
-		return this.board[filas][columnas];
 	}
 
 	public String drawBoard(){
@@ -118,6 +89,7 @@ public class Board
 		for(int i = 0; i < pieces.size(); i++)
 			pieces.get(i).setFigureToFigure();
 	}
+
 	public void boardToLetters(){
 		for(int i = 0; i < pieces.size(); i++)
 			pieces.get(i).setFigureToLetter();
@@ -126,31 +98,10 @@ public class Board
 
 	public boolean isCheckMate(){
 		//Implementar una funcion que cheque si el rey tiene posibles movimiento
-		//Una idea es que si se regresa una lista vacia de coordenadas, entonces no tiene posibles movimientos
-		/*
-		if(this.isThereLegalMoves("King") == false)
-			this.isCheckMate = true;//Es hackemate
-		else
-			this.isCheckMate = false;
-			*/
-
-				
-		//La monstruosidad moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size() 
-		// PRácticamente me dará el tamaño de los posibles movimientos que tendrá la ultima pieza que se movió en el historial, según su 
-		//coordenada nueva.     obtenerPiezaCoordenadas(movementHistory.peek().getNewPos())
-		/*
-		for (int i = 0; i < moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this).size(); i++){
-			System.out.println(moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this).get(i).getPieceInMove().getCoordinate().toString());
-		}
-		this.isCheckMate = false;
-		*/
-
-		
 		this.isCheckMate = false;
 		if(!movementHistory.empty()){
 			List <Move> auxiliarLista = moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this);
 			int tamanio = (int) moves.obtenerMovimientos(obtenerPiezaCoordenadas(movementHistory.peek().getNewPos()), this).size();
-			//System.out.println("tamaño " + tamanio);
 			for (int i = 0; i < pieces.size(); i++){
 				if(this.pieces.get(i).getColor() == getCurrentPlayer() && this.pieces.get(i).getFigure() == '♚'){
 					for(int j = 0; j < tamanio; j++){
@@ -162,35 +113,11 @@ public class Board
 			}
 			
 		}
-		
-		/*
-		if(!movementHistory.empty()){
-			for (int i = 0; i < pieces.size(); i++){
-				if(this.pieces.get(i).getColor() == getCurrentPlayer() && this.pieces.get(i).getFigure() == '♚'){
-					for(int j = 0; j < moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this).size(); j++){
-						if(this.pieces.get(i).getCoordinate().equals(moves.obtenerMovimientos(movementHistory.peek().getPieceInMove(), this).get(j).getPieceInMove().getCoordinate())){
-							this.isCheckMate = true;
-							
-						}else{
-							
-							this.isCheckMate = false;
-						}
-					}
-				}
-				
-			}
-		}
-		*/
-		
 		return this.isCheckMate;
 	}
 
 	public boolean isStalemate(){
 		//Si el rey no tiene movimientos validos pero no esta siendo atacado
-		/*
-		if(this.isThereLegalMoves("King") == false && this.isThreaten("King"))
-			this.isCheckMate = true;//Es hackemate
-		*/
 		for (int i = 0; i < pieces.size(); i++){
 			if(this.pieces.get(i).getColor() == Color.WHITE && this.pieces.get(i).getFigure() == '♚'){
 				if(moves.obtenerMovimientos(pieces.get(i), this) == null){
@@ -206,7 +133,6 @@ public class Board
 				}
 			}
 		}
-
 		return this.isStalemate;
 	}
 
@@ -215,13 +141,10 @@ public class Board
 		if(move == null)
 			return false;
 		else{
-			//Alternar entre jugadores cada que se haga un movimiento
-
 			//Obtener los posibles Movimientos de la Pieza en cuestion
 			ArrayList<Move> possibleMoves = new ArrayList<>( moves.obtenerMovimientos(move.getPieceToMove(), this.get()) );
 
 			//Validar que sea un movimiento valido
-			//Faltaría agregar los movimientos especiales de enroque en passant, etc
 			for(Move m : possibleMoves ){
 				if( m.isEqual(move) ){//Buscar el move que se quiere hacer en la lista de los posibles moves
 					for(Piece pieza : pieces){//Buscar la pieza que hace el movimiento y moverla;
@@ -239,7 +162,7 @@ public class Board
 								}
 								return true;
 							}
-							else //Si no hay para comer pues retorna verdadero de todas formas porque
+							else //Si no hay pieza atacada retorna verdadero de todas formas
 								return true;
 						}
 					}
@@ -267,7 +190,6 @@ public class Board
 				break;
 			}
 		}
-		//Falta agregar recuperar la otra pieza. Seria...
 		//Si se capturó una pieza entonces restaurala
 		if(undoMove.getPieceToCapture() != null)
 			pieces.add(undoMove.getPieceToCapture());
@@ -277,38 +199,28 @@ public class Board
 		return this.currentPlayer;
 	}
 
-		/// Isaac Pruebas
-
-	public List<Coordinate> obtenerPiezasPorColor(Color color)
-	{
+	public List<Coordinate> obtenerPiezasPorColor(Color color){
 		List<Coordinate> listaPiezasCoordenadas = new ArrayList<>();
 		listaPiezasCoordenadas.clear();
-		for(Piece piece : pieces)
-		{
-			if(piece.getColor().equals(color))
-			{
+		for(Piece piece : pieces){
+			if(piece.getColor().equals(color)){
 				listaPiezasCoordenadas.add(piece.getCoordinate());
 			}
 		}
-
 		return listaPiezasCoordenadas;
 	}
 
-	public Piece obtenerPiezaCoordenadas(Coordinate coordinate)
-	{
-		for(Piece piece : pieces)
-		{
-			if(piece.getCoordinate().equals(coordinate))
-			{
+	public Piece obtenerPiezaCoordenadas(Coordinate coordinate){
+		for(Piece piece : pieces){
+			if(piece.getCoordinate().equals(coordinate)){
 				return piece;
-				//System.out.println(piece.toString());
 			}
 		}
 		return null;
 	}
 
 	//Method that returns current class instance 
-    private Board get() { 
+    private Board get(){ 
         return this; 
     }
 

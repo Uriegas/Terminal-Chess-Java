@@ -1,9 +1,6 @@
-
 import java.util.*;
 
 public class Pawn extends Piece{
-    //private char figure = '♟';
-
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
 
     public Pawn(Color color, Coordinate position){
@@ -35,10 +32,4 @@ public class Pawn extends Piece{
     public void setFigureToFigure(){
         super.setFigure('♟');
     }
-    
-    //Prueba Viernes
-    public Pawn(){
-        super(Color.WHITE, new Coordinate(0,3));
-    }
-    //
 }

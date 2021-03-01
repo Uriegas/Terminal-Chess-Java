@@ -1,4 +1,4 @@
-/*Caracteres con figuritas *.*
+/*
 DISPLAY_LOOKUP = {
     "R": '♜',
     "N": '♞',
@@ -34,12 +34,6 @@ public abstract class Piece extends Coordinate{
     //Copy Constructor
     public Piece(Piece p){
         this(p.figure, p.piece_type, p.color, new Coordinate(p.position));
-        /*
-        this.figure = p.figure;
-        this.piece_type = p.piece_type;
-        this.position = new Coordinate(p.position.getX(), p.position.getY());
-        this.color = p.color;
-        */
     }
 
     public abstract Piece deepCopy();
@@ -52,7 +46,6 @@ public abstract class Piece extends Coordinate{
         return this.position;
     }
 
-    //Añado el get color para cuestiones de implementación de color de figuras en posiciones (Creo que se usará)
     public Color getColor(){
         return this.color;
     }
@@ -74,7 +67,6 @@ public abstract class Piece extends Coordinate{
     }
 
     //Imprime información de la pieza
-    //Ya se que se ve horrible
     public String toString(){
         return  "Name: " + this.getPiece_Type() + '\n' + 
                 "Figure: " + String.valueOf(this.getFigure()) + '\n' + 

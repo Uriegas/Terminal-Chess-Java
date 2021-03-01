@@ -1,11 +1,6 @@
 import java.util.*;
 
-
 public class King extends Piece{
-    //private char figure = '♚';
-
-    //Possible movements around the piece
-    //El bato les llama direcciones, hay lo vez Isaac
     private List<Coordinate> mvm = new ArrayList<Coordinate>();
     private void initPossibleMoves(){
         this.mvm.add(new Coordinate(0, 1));

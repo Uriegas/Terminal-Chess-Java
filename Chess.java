@@ -7,7 +7,7 @@ public class Chess {
         Parser parser = new Parser();
         Move m = null;
         String input;
-        Board board = new Board(8,8);
+        Board board = new Board();
 
         System.out.println("Welcome to Terminal Chess");
         System.out.println("A simple chess game from your terminal");
