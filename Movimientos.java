@@ -835,17 +835,18 @@ public class Movimientos
 
 	public void mostrarMovimientosFiltrados()
 	{
+/*
 		//this.eliminarDuplicadosLista();
 		//System.out.println("-------------------MOVIMIENTOS POSIBLES");
 		for(int i = 0; i < this.listaMovimientosFiltrados.size(); i++)
 		{
 			System.out.println(this.listaMovimientosFiltrados.get(i));
 		}
-
 		if(this.listaMovimientosFiltrados.isEmpty())
 		{
 			System.out.println("No hay movimientos para esta pieza. ");
 		}
+		*/
 	}
 
 	public boolean agregarMovimientoSinDuplicarse(Coordinate coordenadasXY)
