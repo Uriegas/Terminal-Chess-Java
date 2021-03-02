@@ -72,7 +72,7 @@ public abstract class Piece extends Coordinate{
     public void setFigureToFigure(){}
 
     public boolean isEqual(Piece p){
-        if( this.getCoordinate().equals(p.getCoordinate()) )//Si tienen la misma coordenada
+        if( this.getCoordinate().equals(p.getCoordinate()) && this.getColor() == p.getColor())//Si tienen la misma coordenada
             return true;
         else
             return false;
@@ -121,11 +121,10 @@ public abstract class Piece extends Coordinate{
         if(newPos.isInsideBoard()){
             if(b.obtenerPiezaCoordenadas(newPos) != null){
                 attacked = b.obtenerPiezaCoordenadas(newPos).deepCopy();
-                if(this.getFigure() == '♟')
-                    return new Move(this, newPos, attacked);
             }
             else
                 attacked = null;
+
             if(attacked == null)
                 return new Move(this, newPos, null);
             else

@@ -1,11 +1,11 @@
 import java.util.*;
 
 public class Pawn extends Piece{
-    private List<Coordinate> mvm = new ArrayList<Coordinate>();
+    int movesCounter;
 
     public Pawn(Color color, Coordinate position){
         super('♟', "Pawn", color, position);
-        this.initPossibleMoves();
+        movesCounter = 0;
     }
     
     //Copy Constructor
@@ -16,14 +16,6 @@ public class Pawn extends Piece{
     @Override
     public Pawn deepCopy(){
         return new Pawn(this);
-    }
-
-    private void initPossibleMoves(){
-        if(super.getColor() == Color.WHITE){
-            this.mvm.add(new Coordinate(0, 1));
-        }else if(super.getColor() == Color.BLACK){
-            this.mvm.add(new Coordinate(0, -1));
-        }
     }
 
     public char getFigure(){
@@ -40,9 +32,7 @@ public class Pawn extends Piece{
             mvm.add(new Coordinate(0, -1));
 
             //Attack Moves
-            mvm.add(new Coordinate(1, -2));
             mvm.add(new Coordinate(1, -1));
-            mvm.add(new Coordinate(-1, -2));
             mvm.add(new Coordinate(-1, -1));
         }
         else{
@@ -50,9 +40,7 @@ public class Pawn extends Piece{
             mvm.add(new Coordinate(0, 1));
 
             //Attack Moves
-            mvm.add(new Coordinate(1, 2));
             mvm.add(new Coordinate(1, 1));
-            mvm.add(new Coordinate(-1, 2));
             mvm.add(new Coordinate(-1, 1));
         }
 
@@ -61,7 +49,14 @@ public class Pawn extends Piece{
             if(super.getNextMove(direction, b) != null)
                 m.add(super.getNextMove(direction, b));
         }
+        //Remove null moves of the attack moves
+        for(int i = 2; i < m.size(); i++)
+            if(m.get(i).getPieceToCapture() == null)
+                m.remove(i);
 
+        if(movesCounter > 0 )
+            m.remove(0);
+        movesCounter++;
         return m;
     }
 }
