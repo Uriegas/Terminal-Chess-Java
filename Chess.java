@@ -25,8 +25,6 @@ public class Chess {
             input = in.nextLine();
             m = parser.Parse(input, board);
             if( m != null ){//Si no se parseo nada, entonces es un movimiento invalido
-                System.out.println(m.toChessNotation());
-                System.out.println(m.toString());
                 board.makeMovement(m);
             }
         }

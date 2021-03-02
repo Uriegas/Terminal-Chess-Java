@@ -84,4 +84,21 @@ public class Coordinate {
     public Coordinate add(Coordinate c){
         return new Coordinate( (this.getX() + c.getX()), (this.getY() + c.getY()) );
     }
+
+    public Coordinate getDirectionFrom2Coordinates(Coordinate destination){
+        int x, y;
+        if( destination.getX() > this.getX() )//Movimiento positivo
+            x = 1;
+        else if( this.getX() > destination.getX() )
+            x = -1;
+        else
+            x = 0;
+        if( destination.getY() > this.getY() )//Movimiento positivo
+            y = 1;
+        else if( this.getY() > destination.getY() )
+            y = -1;
+        else
+            y = 0;
+        return new Coordinate(x,y);
+    }
 }

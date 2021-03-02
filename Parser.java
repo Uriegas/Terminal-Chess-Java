@@ -37,7 +37,7 @@ public class Parser{
     }
 
     public void getRandom(Board b){
-        ArrayList<Move> m = b.possibleMovesCurrentPlayer();
+        ArrayList<Move> m = b.getAllPossibleMoves(b.getCurrentPlayer());
         this.move = m.get( rand.nextInt(m.size()) );
     }
 

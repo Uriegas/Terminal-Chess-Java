@@ -95,22 +95,82 @@ public class Board{
 	}
 
 	public boolean isCheckMate(){
-		//Implementar una funcion que cheque si el rey tiene posibles movimiento
-		this.isCheckMate = false;
-		if(!movementHistory.empty()){
-			List <Move> auxiliarLista = movementHistory.peek().getPieceToMove().getMoves(this);
-			for (int i = 0; i < pieces.size(); i++){
-				if(this.pieces.get(i).getColor() == getCurrentPlayer() && this.pieces.get(i).getFigure() == '♚'){
-					for(Move m : auxiliarLista ){
-						if (this.pieces.get(i).getCoordinate() == (m.getPieceToMove().getCoordinate())){
-							this.isCheckMate = true;
-						}
-					}
-				}
-			}
-			
-		}
+		if(legalMovesifKingAttacked().isEmpty())
+			this.isCheckMate = false;
+		else
+			this.isCheckMate = true;
 		return this.isCheckMate;
+	}
+
+	//Legal Moves if king is attacked
+	public ArrayList<Move> legalMovesifKingAttacked(){
+		ArrayList<Move> finalvalidMoves = new ArrayList<Move>();
+		//Get current player's king
+		Piece king = null;
+		for(Piece p : pieces){
+			if(p.getColor() == this.getCurrentPlayer() && p.getFigure() == '♚'){
+				king = p.deepCopy();
+			}
+		}
+		//Get all the moves of the contrary player
+		ArrayList<Move> moves = this.getAllPossibleMoves(this.getContraryPlayer());
+		//Search for the moves that attack the king
+		ArrayList<Move> attackKingMoves = new ArrayList<Move>();
+		for(Move m : moves)
+			if(m.getPieceToCapture() != null)
+				if( m.getPieceToCapture().isEqual(king))
+					attackKingMoves.add(m);
+		
+		//Analyze direction of attacking piece
+		Coordinate direction = null;
+		ArrayList<Move> finalAttacks = new ArrayList<Move>();
+		ArrayList<Piece> attackPieces = new ArrayList<Piece>();
+
+		if( !attackKingMoves.isEmpty() ){//There is attacks to the king
+			for(Move m : attackKingMoves){//Get all the moves of the attacking piece in that direction
+				direction = m.getOldPos().getDirectionFrom2Coordinates(m.getNewPos());
+				finalAttacks.addAll( m.getPieceToMove().moveInDirectionFromPos(direction, this) );
+				attackPieces.add(m.getPieceToMove());//Agregar las piezas que atacan
+			}
+			//Obtener todos los movimientos del jugador en instancia
+			ArrayList<Move> currentPlayerMoves = this.getAllPossibleMoves(this.getCurrentPlayer());
+			//Save coordinates to protect in an array
+			ArrayList<Coordinate> coordinatesToProtect = new ArrayList<Coordinate>();
+			for( Move m : finalAttacks )
+				coordinatesToProtect.add(m.getNewPos());
+			for( Piece p : attackPieces )
+				coordinatesToProtect.add(p.getCoordinate());
+
+			//Compare NewPos from moves of the currentPlayer with coordinates to protect
+			for( Move m : currentPlayerMoves )
+				for( Coordinate c : coordinatesToProtect)
+					if( m.getNewPos().equals(c) )
+						finalvalidMoves.add(m);
+		}
+		return finalvalidMoves;
+	}
+
+	public boolean isKingAttacked(){
+		//Get current player's king
+		Piece king = null;
+		for(Piece p : pieces){
+			if(p.getColor() == this.getCurrentPlayer() && p.getFigure() == '♚'){
+				king = p.deepCopy();
+			}
+		}
+		//Get all the moves of the contrary player
+		ArrayList<Move> moves = this.getAllPossibleMoves(this.getContraryPlayer());
+		//Search for the moves that attack the king
+		ArrayList<Move> attackKingMoves = new ArrayList<Move>();
+		for(Move m : moves)
+			if( m.getPieceToCapture().isEqual(king))
+				attackKingMoves.add(m);
+
+		if(attackKingMoves.isEmpty())//There is no attacks to the king
+			return false;
+		else{//There are attacks to the king
+			return true;
+		}
 	}
 
 	public boolean isStalemate(){
@@ -198,6 +258,13 @@ public class Board{
 		return this.currentPlayer;
 	}
 
+	public Color getContraryPlayer(){
+		if(this.currentPlayer == Color.BLACK)
+			return Color.WHITE;
+		else
+			return Color.BLACK;
+	}
+
 	public List<Coordinate> obtenerPiezasPorColor(Color color){
 		List<Coordinate> listaPiezasCoordenadas = new ArrayList<>();
 		listaPiezasCoordenadas.clear();
@@ -220,17 +287,17 @@ public class Board{
 
 	public String listPlayerMoves(){
 		String s = new String();
-		ArrayList<Move> possibleMoves = new ArrayList<>(possibleMovesCurrentPlayer());
+		ArrayList<Move> possibleMoves = new ArrayList<>(getAllPossibleMoves(this.currentPlayer));
 		for( Move m : possibleMoves )
 			s += m.toChessNotation() + '\n';
 		return s;
 	}
 
-	public ArrayList<Move> possibleMovesCurrentPlayer(){
+	public ArrayList<Move> getAllPossibleMoves(Color c){
 		ArrayList<Move> possibleMoves = new ArrayList<>();
 		//Add all possible moves of all pieces
 		for( Piece piece : pieces )
-			if(piece.getColor() == this.currentPlayer)//If the piece's color is of the current color, then add the movements of that piece
+			if(piece.getColor() == c)//If the piece's color is of the current color, then add the movements of that piece
 				if( ! piece.getMoves(this).isEmpty() )
 					possibleMoves.addAll(piece.getMoves(this));
 		return possibleMoves;
