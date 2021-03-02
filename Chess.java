@@ -30,8 +30,10 @@ public class Chess {
         }
 
         //Solo existen 3 posibles resultados del juego
-        if(board.isCheckMate())
-            System.out.println(board.getCurrentPlayer().toString() + "won!!");
+        if(board.isCheckMate()){
+            System.out.println(board.drawBoard());
+            System.out.println(board.getContraryPlayer().toString() + " won!!");
+        }
         else if(board.isStalemate())//Aqui creo que seria agarrar el otro jugador
             System.out.println("Draw :(");
         else
