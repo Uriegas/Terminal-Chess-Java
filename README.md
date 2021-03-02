@@ -2,13 +2,21 @@
 Terminal Chess Java
 ==================
 
-## Report  
-[Overleaf - Ver](https://www.overleaf.com/read/jwprchbnfsbw)  
-[Overleaf - Editar](https://www.overleaf.com/9577246851cdscmhvgdnwm)  
+## Run  
+Run with:
+```
+javac Chess.java
+java Chess
+```
 
-Agregar sobre la solución de [Deep Copying](https://stackoverflow.com/questions/61875004/deep-copy-of-abstract-object) implementada en las piezas.
-
-[Otra referencia](https://stackoverflow.com/questions/20844660/copy-constructor-for-abstract-class)
+CheckMate in 3 moves:
+```
+e2->e4
+f7->f5
+e4->f5
+g7->g5
+d1->h5
+```
 
 ## Chess Concepts  
 **Checkmate** is a game position in which a player's king is in check (threatened with capture) and there is no way to avoid the threat.  
