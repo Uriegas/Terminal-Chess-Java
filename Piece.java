@@ -112,14 +112,18 @@ public abstract class Piece extends Coordinate{
         return m;
     }
 
+    //Just get move in the coordinate passed
     public Move getNextMove(Coordinate direction, Board b){
         Coordinate newPos = this.position;
         Piece attacked = null;
 
         newPos = newPos.add(direction);
         if(newPos.isInsideBoard()){
-            if(b.obtenerPiezaCoordenadas(newPos) != null)
+            if(b.obtenerPiezaCoordenadas(newPos) != null){
                 attacked = b.obtenerPiezaCoordenadas(newPos).deepCopy();
+                if(this.getFigure() == '♟')
+                    return new Move(this, newPos, attacked);
+            }
             else
                 attacked = null;
             if(attacked == null)

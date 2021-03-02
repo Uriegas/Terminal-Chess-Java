@@ -38,10 +38,22 @@ public class Pawn extends Piece{
         if(this.getColor() == Color.WHITE){
             mvm.add(new Coordinate(0, -2));
             mvm.add(new Coordinate(0, -1));
+
+            //Attack Moves
+            mvm.add(new Coordinate(1, -2));
+            mvm.add(new Coordinate(1, -1));
+            mvm.add(new Coordinate(-1, -2));
+            mvm.add(new Coordinate(-1, -1));
         }
         else{
             mvm.add(new Coordinate(0, 2));
             mvm.add(new Coordinate(0, 1));
+
+            //Attack Moves
+            mvm.add(new Coordinate(1, 2));
+            mvm.add(new Coordinate(1, 1));
+            mvm.add(new Coordinate(-1, 2));
+            mvm.add(new Coordinate(-1, 1));
         }
 
         ArrayList<Move> m = new ArrayList<Move>();
@@ -49,6 +61,7 @@ public class Pawn extends Piece{
             if(super.getNextMove(direction, b) != null)
                 m.add(super.getNextMove(direction, b));
         }
+
         return m;
     }
 }
